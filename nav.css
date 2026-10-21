@@ -28,7 +28,15 @@
     scrollbar-width: none;
   }
 
-  .games-dropdown { position: fixed; top: auto; left: 7vw; margin-top: 12px; }
+  .games-dropdown {
+    position: fixed;
+    z-index: 20;
+    top: 116px;
+    left: 7vw;
+    right: 7vw;
+    min-width: 0;
+    margin-top: 0;
+  }
 
   .nav nav::-webkit-scrollbar { display: none; }
 }
