@@ -3,10 +3,11 @@
 .nav nav {
   flex: 1;
   justify-content: center;
-  gap: clamp(8px, 1vw, 18px);
+  gap: clamp(10px, 1vw, 18px);
   margin-left: 0;
   white-space: nowrap;
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 @media (max-width: 1120px) {
