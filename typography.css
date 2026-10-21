@@ -1,0 +1,21 @@
+:root {
+  --mono: 'Inter', Arial, sans-serif;
+  --display: 'Inter', Arial, sans-serif;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.hero h1 em,
+h2 em,
+.doodle,
+.card .symbol,
+.big-button,
+.big-button span {
+  font-family: 'Inter', Arial, sans-serif;
+}
