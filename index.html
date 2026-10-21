@@ -11,12 +11,19 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav.css" />
     <link rel="stylesheet" href="typography.css" />
+    <link rel="stylesheet" href="community.css" />
   </head>
   <body>
     <header class="nav">
       <a class="wordmark" href="#top" aria-label="Leo Lab home"><span class="seed"></span>leo lab</a>
       <nav aria-label="Primary"><a href="#about">about</a><a href="#notes">notes</a><a href="#work">work</a><a href="#work">open source</a><a href="#work">K–12 education</a><a href="#work">university CS</a><a href="#work">cloud computing</a><a href="#work">games</a><a href="#work">coding</a><a href="#notes">blog</a><a href="#work">resources</a></nav>
-      <a class="pill" href="https://github.com/mrleolab" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+      <div class="nav-actions">
+        <button class="slack-join" type="button" data-community-open aria-haspopup="dialog">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.4 14.5a2.1 2.1 0 1 1-2.1-2.1h2.1v2.1Zm1.1 0a2.1 2.1 0 0 1 4.2 0v5.3a2.1 2.1 0 1 1-4.2 0v-5.3Zm2.1-8.1a2.1 2.1 0 1 1 2.1-2.1v2.1H9.6Zm0 1.1a2.1 2.1 0 0 1 0 4.2H4.3a2.1 2.1 0 1 1 0-4.2h5.3Zm8.1 2.1a2.1 2.1 0 1 1 2.1 2.1h-2.1V9.6Zm-1.1 0a2.1 2.1 0 0 1-4.2 0V4.3a2.1 2.1 0 1 1 4.2 0v5.3Zm-2.1 8.1a2.1 2.1 0 1 1-2.1 2.1v-2.1h2.1Zm0-1.1a2.1 2.1 0 0 1 0-4.2h5.3a2.1 2.1 0 1 1 0 4.2h-5.3Z" /></svg>
+          <span>Join Slack Community</span>
+        </button>
+        <a class="pill" href="https://github.com/mrleolab" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+      </div>
     </header>
 
     <main id="top">
@@ -34,5 +41,21 @@
       <section class="contact section" id="contact"><p class="kicker">A note is always welcome</p><h2>Let’s make<br />something <em>growing.</em></h2><a class="big-button" href="mailto:hello@example.com">hello@example.com <span>↗</span></a><p class="tiny">This is a static site, ready to deploy to Cloudflare Workers.</p></section>
     </main>
     <footer><a class="wordmark" href="#top"><span class="seed"></span>leo lab</a><p>Made with care &amp; plenty of green.</p><a href="#top">back to top ↑</a></footer>
+    <div class="community-modal" id="community-application" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="community-title">
+      <div class="community-backdrop" data-community-close></div>
+      <section class="community-panel">
+        <div class="community-panel-head">
+          <div>
+            <p class="index">Leo Lan's Science Community</p>
+            <h2 id="community-title">Apply to <em>join.</em></h2>
+          </div>
+          <button class="community-close" type="button" data-community-close aria-label="Close application form">×</button>
+        </div>
+        <p class="community-note">Applications are reviewed personally. Please use a Gmail address so Leo can invite you to the private Slack community.</p>
+        <iframe title="Leo Lan's Science Community application form" src="https://docs.google.com/forms/d/e/1FAIpQLSfvHYECWzdlxE3j40830FP-wR09vRvsApUlu0AxB3WJdrd3EQ/viewform?embedded=true" loading="lazy">Loading…</iframe>
+        <a class="community-external" href="https://docs.google.com/forms/d/e/1FAIpQLSfvHYECWzdlxE3j40830FP-wR09vRvsApUlu0AxB3WJdrd3EQ/viewform?usp=dialog" target="_blank" rel="noreferrer">Open the application in a new tab <span>↗</span></a>
+      </section>
+    </div>
+    <script src="community.js"></script>
   </body>
 </html>
