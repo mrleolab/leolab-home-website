@@ -1,0 +1,15 @@
+.games { background: #f2dfce; }
+.games-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 8vw; align-items: end; margin-top: 48px; }
+.games h2 { font-size: clamp(48px, 6vw, 92px); margin: 0 0 28px; }
+.games-layout > div > p { max-width: 280px; line-height: 1.55; }
+.games-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px; }
+.game-card { min-height: 390px; padding: 26px; border-radius: 10px; display: flex; flex-direction: column; background: #20372c; color: var(--cream); text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+.chess-card { background: #283449; }
+.game-card:hover { transform: translateY(-5px); box-shadow: 13px 13px 0 rgba(32, 55, 44, .16); }
+.game-label { font: 10px var(--mono); letter-spacing: .04em; }
+.game-icon { font-family: var(--display); font-size: 116px; line-height: 1; margin: auto 0; color: var(--lime); }
+.game-card strong { font-size: clamp(31px, 4vw, 52px); letter-spacing: -.07em; }
+.game-card small { max-width: 340px; margin-top: 10px; line-height: 1.45; font-size: 13px; color: #dfe7d7; }
+.game-play { display: flex; justify-content: space-between; margin-top: 30px; padding-top: 14px; border-top: 1px solid rgba(250, 247, 239, .35); font-size: 13px; font-weight: 700; }
+.game-play i { font-size: 19px; font-style: normal; }
+@media (max-width: 720px) { .games-layout { display: block; margin-top: 35px; } .games-grid { display: block; } .game-card { margin-top: 18px; min-height: 320px; } .games-layout > div + .games-grid { margin-top: 38px; } }

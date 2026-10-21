@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="nav.css" />
     <link rel="stylesheet" href="typography.css" />
     <link rel="stylesheet" href="community.css" />
+    <link rel="stylesheet" href="games.css" />
   </head>
   <body>
     <header class="nav">
       <a class="wordmark" href="#top" aria-label="Leo Lab home"><span class="seed"></span>Leo Lab</a>
-      <nav aria-label="Primary"><a href="#about">about me</a><a href="#work">K–12 education</a><a href="#work">university CS</a><a href="#work">cloud computing</a><a href="#work">games</a><a href="#work">coding</a><a href="#notes">blog</a><a href="#work">resources</a></nav>
+      <nav aria-label="Primary"><a href="#about">about me</a><a href="#work">K–12 education</a><a href="#work">university CS</a><a href="#work">cloud computing</a><details class="games-menu"><summary>games <span aria-hidden="true">↓</span></summary><div class="games-dropdown"><a href="games/international-chess/">International Chess</a><a href="games/chinese-chess/">Chinese Chess</a></div></details><a href="#work">coding</a><a href="#notes">blog</a><a href="#work">resources</a></nav>
       <div class="nav-actions">
         <button class="slack-join" type="button" data-community-open aria-haspopup="dialog">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.4 14.5a2.1 2.1 0 1 1-2.1-2.1h2.1v2.1Zm1.1 0a2.1 2.1 0 0 1 4.2 0v5.3a2.1 2.1 0 1 1-4.2 0v-5.3Zm2.1-8.1a2.1 2.1 0 1 1 2.1-2.1v2.1H9.6Zm0 1.1a2.1 2.1 0 0 1 0 4.2H4.3a2.1 2.1 0 1 1 0-4.2h5.3Zm8.1 2.1a2.1 2.1 0 1 1 2.1 2.1h-2.1V9.6Zm-1.1 0a2.1 2.1 0 0 1-4.2 0V4.3a2.1 2.1 0 1 1 4.2 0v5.3Zm-2.1 8.1a2.1 2.1 0 1 1-2.1 2.1v-2.1h2.1Zm0-1.1a2.1 2.1 0 0 1 0-4.2h5.3a2.1 2.1 0 1 1 0 4.2h-5.3Z" /></svg>
@@ -36,7 +37,9 @@
 
       <section class="notes section" id="notes"><div class="notes-head"><p class="index">02 / from the garden</p><h2>Small notes,<br /><em>big curiosities.</em></h2></div><div class="note-list"><a href="#contact"><span class="date">FIELD NOTE 001</span><strong>Why friendly software feels more useful</strong><i>↗</i></a><a href="#contact"><span class="date">FIELD NOTE 002</span><strong>Make room for an unfinished thought</strong><i>↗</i></a><a href="#contact"><span class="date">FIELD NOTE 003</span><strong>A tiny manifesto for better tools</strong><i>↗</i></a></div></section>
 
-      <section class="work section" id="work"><p class="index">03 / things in progress</p><div class="cards"><article class="card lime"><p>01</p><span class="symbol">☼</span><h3>Sunny systems</h3><small>A gentle collection of tools for keeping projects moving.</small></article><article class="card moss"><p>02</p><span class="symbol">⌁</span><h3>Soft signals</h3><small>Notes on design, attention, and the way we work together.</small></article><article class="card peach"><p>03</p><span class="symbol">✽</span><h3>Good soil</h3><small>Experiments for a more thoughtful web.</small></article></div></section>
+      <section class="games section" id="games"><p class="index">03 / games</p><div class="games-layout"><div><h2>Learn by<br /><em>playing.</em></h2><p>Small games and experiments for curious minds.</p></div><div class="games-grid"><a class="game-card chess-card" href="games/international-chess/" aria-label="Play International Chess"><span class="game-label">PROJECT 001</span><span class="game-icon" aria-hidden="true">♞</span><strong>International Chess</strong><small>Play Stockfish, explore each position, and learn from the analysis.</small><span class="game-play">Play now <i>↗</i></span></a><a class="game-card" href="games/chinese-chess/" aria-label="Play Chinese Chess"><span class="game-label">PROJECT 002</span><span class="game-icon" aria-hidden="true">象</span><strong>Chinese Chess</strong><small>Play against the computer, challenge a friend, or explore a custom board.</small><span class="game-play">Play now <i>↗</i></span></a></div></div></section>
+
+      <section class="work section" id="work"><p class="index">04 / things in progress</p><div class="cards"><article class="card lime"><p>01</p><span class="symbol">☼</span><h3>Sunny systems</h3><small>A gentle collection of tools for keeping projects moving.</small></article><article class="card moss"><p>02</p><span class="symbol">⌁</span><h3>Soft signals</h3><small>Notes on design, attention, and the way we work together.</small></article><article class="card peach"><p>03</p><span class="symbol">✽</span><h3>Good soil</h3><small>Experiments for a more thoughtful web.</small></article></div></section>
 
       <section class="contact section" id="contact"><p class="kicker">A note is always welcome</p><h2>Let’s make<br />something <em>growing.</em></h2><a class="big-button" href="mailto:hello@example.com">hello@example.com <span>↗</span></a><p class="tiny">This is a static site, ready to deploy to Cloudflare Workers.</p></section>
     </main>
