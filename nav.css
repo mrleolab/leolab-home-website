@@ -6,7 +6,7 @@
   gap: clamp(10px, 1vw, 18px);
   margin-left: 0;
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 500;
 }
 
@@ -21,5 +21,23 @@
 }
 
 @media (max-width: 720px) {
-  .nav nav { display: none; }
+  .nav {
+    flex-wrap: wrap;
+    row-gap: 14px;
+  }
+
+  .nav nav {
+    display: flex;
+    order: 3;
+    flex: 0 0 100%;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 6px;
+    font-size: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .hero { padding-top: 190px; }
 }
