@@ -1,0 +1,12 @@
+@media (max-width: 720px) {
+  /* Keep the homepage in the browser's native scrolling path on touch devices. */
+  html,
+  body {
+    overscroll-behavior-y: auto;
+  }
+
+  .mascot-wrap img {
+    animation: none;
+    filter: drop-shadow(8px 12px 0 rgba(32, 55, 44, 0.08));
+  }
+}
