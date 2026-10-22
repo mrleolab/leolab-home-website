@@ -46,6 +46,9 @@
 .games-popover[hidden], .ai-skills-popover[hidden], .cloud-computing-popover[hidden], .coding-popover[hidden] { display: none; }
 .games-popover a, .ai-skills-popover a, .cloud-computing-popover a, .coding-popover a { display: block; padding: 10px 12px; border-radius: 7px; color: inherit; text-decoration: none; font: 500 14px/1.2 'Inter', Arial, sans-serif; }
 .games-popover a:hover, .games-popover a:focus-visible, .ai-skills-popover a:hover, .ai-skills-popover a:focus-visible, .cloud-computing-popover a:hover, .cloud-computing-popover a:focus-visible, .coding-popover a:hover, .coding-popover a:focus-visible { background: var(--lime); }
+.coding-popover { min-width: 216px; }
+.menu-label { margin: 9px 10px 3px; color: var(--moss); font: 700 10px/1.2 'Inter', Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.menu-label:first-child { margin-top: 4px; }
 
 @media (max-width: 1120px) {
   .nav nav {
