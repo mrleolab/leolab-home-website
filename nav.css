@@ -49,6 +49,7 @@
 .games-popover a:hover, .games-popover a:focus-visible, .k12-education-popover a:hover, .k12-education-popover a:focus-visible, .computer-science-popover a:hover, .computer-science-popover a:focus-visible, .ai-skills-popover a:hover, .ai-skills-popover a:focus-visible, .coding-popover a:hover, .coding-popover a:focus-visible { background: var(--lime); }
 .coding-popover { min-width: 216px; }
 .ai-skills-popover { max-height: calc(100dvh - 80px); overflow-y: auto; }
+.computer-science-popover { max-height: calc(100dvh - 80px); overflow-y: auto; }
 .menu-label { display: inline-flex; margin: 10px 10px 4px; padding: 4px 7px; border-radius: 999px; background: #edf2e3; color: var(--moss); font: 700 12px/1.2 'Inter', Arial, sans-serif; letter-spacing: .05em; text-transform: uppercase; }
 .menu-label:first-child { margin-top: 4px; }
 .label-learning { color: #2f6de0; }
@@ -65,6 +66,9 @@
 .label-mit { color: #a31f34; }
 .label-stanford { color: #8c1515; }
 .label-open-source { color: #4e596c; }
+.label-networking { color: #176c72; }
+.label-security { color: #b3532d; }
+.label-cybersecurity { color: #8a4ec5; }
 .foundation-sources { margin: 9px 2px 2px; }
 .foundation-sources > summary { cursor: pointer; list-style: none; }
 .foundation-sources > summary::-webkit-details-marker { display: none; }
