@@ -86,7 +86,6 @@
 
   .hero {
     padding-top: 72px;
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: visible;
   }
 }
