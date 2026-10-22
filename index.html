@@ -18,6 +18,7 @@
   <body>
     <header class="nav">
       <a class="wordmark" href="#top" aria-label="Leo Lab home"><span class="seed"></span>Leo Lab</a>
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
       <nav aria-label="Primary"><a href="#about">About Me</a><button class="menu-trigger games-trigger" type="button" aria-expanded="false" aria-controls="games-popover" data-menu="games-popover">Chess <span aria-hidden="true">↓</span></button><button class="menu-trigger k12-education-trigger" type="button" aria-expanded="false" aria-controls="k12-education-popover" data-menu="k12-education-popover">K–12 Education <span aria-hidden="true">↓</span></button><a href="#work">Computer Science Engineering</a><button class="menu-trigger cloud-computing-trigger" type="button" aria-expanded="false" aria-controls="cloud-computing-popover" data-menu="cloud-computing-popover">Cloud Computing <span aria-hidden="true">↓</span></button><button class="menu-trigger ai-skills-trigger" type="button" aria-expanded="false" aria-controls="ai-skills-popover" data-menu="ai-skills-popover">AI Skills <span aria-hidden="true">↓</span></button><button class="menu-trigger coding-trigger" type="button" aria-expanded="false" aria-controls="coding-popover" data-menu="coding-popover">Coding <span aria-hidden="true">↓</span></button><a href="#notes">Blog</a><a href="#work">Resources</a></nav>
       <div class="games-popover" id="games-popover" hidden><a href="games/international-chess/">International Chess</a><a href="games/chinese-chess/">Chinese Chess</a></div>
       <div class="k12-education-popover" id="k12-education-popover" hidden><a href="k12-education/">About K–12 Education</a><a href="https://ibo.org/programmes/primary-years-programme/" target="_blank" rel="noreferrer">School Information ↗</a></div>
@@ -31,6 +32,20 @@
         </button>
         <a class="pill" href="https://github.com/mrleolab" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
       </div>
+      <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu-head"><a class="wordmark" href="#top"><span class="seed"></span>Leo Lab</a><button class="mobile-menu-close" type="button" aria-label="Close menu">×</button></div>
+        <div class="mobile-menu-links">
+          <a href="#about">About Me</a>
+          <details><summary>Chess <span>⌄</span></summary><a href="games/international-chess/">International Chess</a><a href="games/chinese-chess/">Chinese Chess</a></details>
+          <details><summary>K–12 Education <span>⌄</span></summary><a href="k12-education/">About K–12 Education</a><a href="https://ibo.org/programmes/primary-years-programme/" target="_blank" rel="noreferrer">School Information ↗</a></details>
+          <a href="#work">Computer Science Engineering</a>
+          <details><summary>Cloud Computing <span>⌄</span></summary><a href="https://aws.amazon.com/" target="_blank" rel="noreferrer">AWS ↗</a><a href="https://www.microsoft.com/en-us/microsoft-cloud" target="_blank" rel="noreferrer">Microsoft Cloud ↗</a><a href="https://cloud.google.com/" target="_blank" rel="noreferrer">Google Cloud ↗</a></details>
+          <details><summary>AI Skills <span>⌄</span></summary><a href="https://openai.com/" target="_blank" rel="noreferrer">OpenAI ↗</a><a href="https://www.anthropic.com/" target="_blank" rel="noreferrer">Anthropic ↗</a><a href="https://www.deeplearning.ai/" target="_blank" rel="noreferrer">DeepLearning.AI ↗</a><a href="https://openai.com/codex/" target="_blank" rel="noreferrer">Codex ↗</a><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noreferrer">Claude Code ↗</a></details>
+          <details><summary>Coding <span>⌄</span></summary><a href="https://code.org/" target="_blank" rel="noreferrer">Code.org ↗</a><a href="https://www.python.org/" target="_blank" rel="noreferrer">Python ↗</a><a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" rel="noreferrer">JavaScript ↗</a><a href="https://react.dev/" target="_blank" rel="noreferrer">React ↗</a><a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer">VS Code ↗</a><a href="https://www.cursor.com/" target="_blank" rel="noreferrer">Cursor ↗</a><a href="https://kiro.dev/" target="_blank" rel="noreferrer">Kiro ↗</a></details>
+          <a href="#notes">Blog</a><a href="#work">Resources</a>
+        </div>
+        <a class="mobile-menu-github" href="https://github.com/mrleolab" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+      </aside>
     </header>
 
     <main id="top">
@@ -67,5 +82,6 @@
     </div>
     <script src="community.js"></script>
     <script src="games-menu.js"></script>
+    <script src="mobile-menu.js"></script>
   </body>
 </html>
