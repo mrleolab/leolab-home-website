@@ -48,6 +48,7 @@
 .games-popover a, .k12-education-popover a, .computer-science-popover a, .ai-skills-popover a, .coding-popover a { display: block; padding: 10px 12px; border-radius: 7px; color: inherit; text-decoration: none; font: 500 14px/1.2 'Inter', Arial, sans-serif; }
 .games-popover a:hover, .games-popover a:focus-visible, .k12-education-popover a:hover, .k12-education-popover a:focus-visible, .computer-science-popover a:hover, .computer-science-popover a:focus-visible, .ai-skills-popover a:hover, .ai-skills-popover a:focus-visible, .coding-popover a:hover, .coding-popover a:focus-visible { background: var(--lime); }
 .coding-popover { min-width: 216px; }
+.ai-skills-popover { max-height: calc(100dvh - 80px); overflow-y: auto; }
 .menu-label { display: inline-flex; margin: 10px 10px 4px; padding: 4px 7px; border-radius: 999px; background: #edf2e3; color: var(--moss); font: 700 12px/1.2 'Inter', Arial, sans-serif; letter-spacing: .05em; text-transform: uppercase; }
 .menu-label:first-child { margin-top: 4px; }
 .label-learning { color: #2f6de0; }
@@ -58,6 +59,9 @@
 .label-repository { color: #5a5a5a; }
 .label-cloud { color: #126f9a; }
 .label-models { color: #b04376; }
+.label-foundation { color: #744b25; }
+.label-infrastructure { color: #176c72; }
+.label-research { color: #6a3c99; }
 .mobile-menu-toggle,
 .mobile-menu { display: none; }
 
