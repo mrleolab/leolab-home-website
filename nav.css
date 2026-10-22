@@ -56,8 +56,12 @@
 
 @media (max-width: 720px) {
   .nav {
+    position: sticky;
+    inset: 0 auto auto;
+    z-index: 10;
     flex-wrap: wrap;
     row-gap: 14px;
+    background: var(--cream);
   }
 
   .nav nav {
@@ -81,5 +85,9 @@
     transform: none;
   }
 
-  .hero { padding-top: 190px; }
+  .hero {
+    padding-top: 72px;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
 }
