@@ -62,7 +62,7 @@
         const atom=atoms[i%atoms.length], az=random()*TAU, zz=random()*2-1, rr=.045*Math.sqrt(1-zz*zz);
         molecule[0]=atom[0]/5.1+rr*Math.cos(az);molecule[1]=atom[1]/5.1+zz*.045;molecule[2]=atom[2]/5.1+rr*Math.sin(az);
       }
-      const orbit = 1 + i % 8, angle = random() * TAU;
+      const orbit = 1 + Math.floor(i / 8) % 8, angle = random() * TAU;
       const radius = .14 + orbit * .105;
       let solar = [Math.cos(angle) * radius, Math.sin(angle) * radius * .6, Math.sin(angle) * radius * .3];
       let solarColor = orbitColors[orbit - 1];
