@@ -27,9 +27,9 @@
 .hero .arrow-link { color: #c4ffe2; }
 .hero .mascot-wrap { visibility: hidden; pointer-events: none; }
 @media (max-width: 720px) {
-  .hero { min-height: 820px; padding-top: 58px; }
+  .hero { min-height: calc(100svh - 78px); padding-top: 58px; padding-bottom: 56px; }
   .hero h1 { font-size: clamp(44px, 12vw, 70px); }
   .hero .intro { font-size: 15px; }
-  .hero .mascot-wrap { min-height: 280px; margin: 0; }
+  .hero .mascot-wrap { display: none; }
   .hero::after { background: linear-gradient(180deg, rgba(4,6,16,.12), rgba(4,6,16,.3) 38%, rgba(4,6,16,.08) 78%); }
 }
