@@ -41,7 +41,7 @@
   }
   function createPoints() {
     seed = 23917;
-    const count = mobile ? 2200 : 4800;
+    const count = mobile ? 3200 : 6000;
     points = Array.from({ length: count }, (_, i) => {
       const t = random(), phase = t * TAU * 2.3, strand = i % 2 ? Math.PI : 0;
       const jitter = (random() - .5) * .045;
@@ -69,20 +69,25 @@
         const z = random() * 2 - 1, p = random() * TAU, r = Math.sqrt(1-z*z) * .15;
         solar = [Math.cos(p) * r, z * .15, Math.sin(p) * r];
         solarColor = [255,180 + random() * 65,55];
-      } else if (i % 4 === 1) {
-        const planet = i % 7, a = planet * 2.4, r = .26 + planet * .1;
-        const p = random() * TAU, z = random() * 2 - 1, size = .025 + planet * .004;
-        solar = [Math.cos(a) * r + Math.cos(p) * size, Math.sin(a) * r * .6 + z * size, Math.sin(p) * size];
-        solarColor = planet % 2 ? [242,157,86] : [107,222,232];
+      } else if (i % 4 === 1 || i % 8 === 2) {
+        const planet = Math.floor(i / 8) % 8, a = planet * 2.4, r = .23 + planet * .095;
+        const p = random() * TAU, z = random() * 2 - 1, size = [.027,.04,.045,.035,.072,.065,.05,.048][planet];
+        const rr=Math.sqrt(1-z*z), px=Math.cos(p)*rr, pz=Math.sin(p)*rr;
+        solar = [Math.cos(a) * r + px * size, Math.sin(a) * r * .6 + z * size, pz * size];
+        const colors=[[170,170,174],[239,195,128],[64,155,255],[239,103,63],[221,170,120],[239,209,149],[111,231,227],[74,115,250]];
+        const light=.45+.55*Math.max(0,pz*.8-px*.6);
+        solarColor=colors[planet].map(c=>Math.round(c*light));
+        if(planet===2 && Math.sin(p*4+z*8)>.35)solarColor=[75,193,124].map(c=>Math.round(c*light));
+        if(planet===5 && i%3===0){const ring=random()*TAU,ringR=size*(1.4+random()*.7);solar=[Math.cos(a)*r+Math.cos(ring)*ringR,Math.sin(a)*r*.6+Math.sin(ring)*ringR*.35,Math.sin(ring)*ringR];solarColor=[211,185,144];}
       }
-      return { shapes: [dna, scope, solar, molecule], solarColor, size: .5 + random() * .85, alpha: .4 + random() * .6 };
+      return { shapes: [dna, scope, solar, molecule], solarColor, size: .75 + random() * .65, alpha: .65 + random() * .35 };
     });
     stars = Array.from({ length: mobile ? 140 : 340 }, () => ({ x: random(), y: random(), size: random() * 1.2 + .2, alpha: .1 + random() * .45 }));
   }
   function resize() {
     if (!hero.clientWidth || !hero.clientHeight) return;
     width = hero.clientWidth; height = hero.clientHeight; mobile = width <= 720;
-    const ratio = Math.min(devicePixelRatio || 1, 1.5);
+    const ratio = Math.min(devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     createPoints();
@@ -108,6 +113,8 @@
     const rotation = time * .32, cos = Math.cos(rotation), sin = Math.sin(rotation);
     const rotated=(v,kind)=> {
       if(kind===1)return [v[0]+v[2]*Math.sin(rotation)*.35,v[1],v[2]];
+      // Keep the orbital plane readable rather than turning it edge-on.
+      if(kind===2){const a=time*.09,c=Math.cos(a),s=Math.sin(a);return [v[0]*c-v[1]*s,v[0]*s+v[1]*c,v[2]];}
       const x=v[0]*cos+v[2]*sin,z=-v[0]*sin+v[2]*cos;
       return [x,v[1],z];
     };
