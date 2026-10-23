@@ -10,13 +10,6 @@
     filter: drop-shadow(8px 12px 0 rgba(32, 55, 44, 0.08));
     -webkit-user-drag: none;
     user-select: none;
-    touch-action: pan-y;
-  }
-
-  .mascot-wrap,
-  .game-card,
-  .game-card * {
-    touch-action: pan-y;
   }
 
   .game-card {
