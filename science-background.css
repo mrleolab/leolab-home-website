@@ -26,6 +26,8 @@
 .hero .intro { color: #b4c3ce; }
 .hero .arrow-link { color: #c4ffe2; }
 .hero .mascot-wrap { visibility: hidden; pointer-events: none; }
+.nav .github-icon { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; width:44px; height:44px; padding:10px; border-radius:50%; }
+.github-icon svg { display:block; width:24px; height:24px; }
 @media (max-width: 720px) {
   .hero { min-height: calc(100svh - 78px); padding-top: 58px; padding-bottom: 56px; }
   .hero h1 { font-size: clamp(44px, 12vw, 70px); }
