@@ -96,7 +96,7 @@
   }
   function render(time) {
     ctx.fillStyle = '#040610'; ctx.fillRect(0, 0, width, height);
-    const cx = width * (mobile ? .5 : .64), cy = height * .5;
+    const cx = width * (mobile ? .5 : .64), cy = height * (mobile ? .4 : .5);
     // Fit the entire rotating cage/solar system inside narrow screens,
     // including perspective magnification and the morph between shapes.
     const scale = Math.min(width * (mobile ? .39 : .48), height * .57);
