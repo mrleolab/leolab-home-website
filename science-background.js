@@ -90,8 +90,10 @@
   }
   function render(time) {
     ctx.fillStyle = '#040610'; ctx.fillRect(0, 0, width, height);
-    const cx = width * (mobile ? .55 : .64), cy = height * .5;
-    const scale = Math.min(width * (mobile ? 1.02 : .48), height * .57);
+    const cx = width * (mobile ? .5 : .64), cy = height * .5;
+    // Fit the entire rotating cage/solar system inside narrow screens,
+    // including perspective magnification and the morph between shapes.
+    const scale = Math.min(width * (mobile ? .39 : .48), height * .57);
     const glow = ctx.createRadialGradient(cx,cy,0,cx,cy,scale*1.5);
     glow.addColorStop(0, '#0b1530'); glow.addColorStop(1, '#040610');
     ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height);
