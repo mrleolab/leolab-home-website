@@ -75,7 +75,8 @@
   }
   function createPoints() {
     seed = 23917;
-    const count = mobile ? 3200 : 6000;
+    // Extra points are rendered only for robot scenes and their transitions.
+    const count = mobile ? 6400 : 10000;
     points = Array.from({ length: count }, (_, i) => {
       const t = random(), phase = t * TAU * 2.3, strand = i % 2 ? Math.PI : 0;
       const jitter = (random() - .5) * .045;
@@ -154,14 +155,20 @@
       const x=v[0]*cos+v[2]*sin,z=-v[0]*sin+v[2]*cos;
       return [x,v[1],z];
     };
-    for (const point of points) {
+    const robotScene=kind=>kind===2||kind===3;
+    const detailWeight=(robotScene(scene)?1-ease:0)+(robotScene(next)?ease:0);
+    const baseCount=mobile?3200:6000;
+    for (let index=0;index<points.length;index++) {
+      if(index>=baseCount&&detailWeight===0)continue;
+      const point=points[index];
       const a = rotated(point.shapes[scene],scene), b = rotated(point.shapes[next],next);
       let x = a[0] + (b[0]-a[0])*ease, y = a[1] + (b[1]-a[1])*ease, z = a[2] + (b[2]-a[2])*ease;
       const depth = 1 / (1 - z * .24);
       const colorFor=kind=>kind===2?point.robotColor:kind===3?point.duckColor:kind===4?point.solarColor:palette[kind];
       const colorA = colorFor(scene), colorB = colorFor(next);
       const color = colorA.map((v,i) => Math.round(v + (colorB[i]-v)*ease));
-      ctx.fillStyle = `rgba(${color.join(',')},${point.alpha * Math.min(1,depth)})`;
+      const densityAlpha=index>=baseCount?detailWeight:1;
+      ctx.fillStyle = `rgba(${color.join(',')},${point.alpha * Math.min(1,depth) * densityAlpha})`;
       const size = point.size * depth;
       ctx.fillRect(cx + x * scale * depth, cy + y * scale * depth, size, size);
     }
