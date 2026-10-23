@@ -14,6 +14,24 @@ function init(){
   let selected=3,paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let visible=false,raf=0,last=null,accumulator=0,lastData=0,lastTrail=0;
   let rotating=false,drag=null,history=sim.bodies.map(()=>[]);
+  let autoOrbit=false,expanded=false,pinch=null;
+  const pointers=new Map(),stage=canvas.parentElement;
+  const touchButton=root.querySelector('[data-lab-action="rotate"]');
+  const expandButton=root.querySelector('[data-lab-action="immersive"]');
+  const gestureLabel=get('scene-gesture');
+  function touchMode(enabled){
+    rotating=enabled;canvas.classList.toggle('is-interactive',enabled);
+    touchButton.setAttribute('aria-pressed',String(enabled));
+    get('hint').textContent=enabled?'One finger rotates; two fingers pinch to zoom. Disable Touch controls to scroll from the scene.':'Swipe to scroll. Enable Touch controls for rotation and two-finger zoom.';
+    gestureLabel.textContent=enabled?'Drag to orbit · Pinch to zoom':'Drag to orbit · Scroll to zoom';
+    pointers.clear();drag=null;pinch=null;
+  }
+  function immersive(enabled){
+    expanded=enabled;stage.classList.toggle('is-expanded',enabled);document.body.classList.toggle('lab-immersive-open',enabled);
+    expandButton.setAttribute('aria-pressed',String(enabled));expandButton.textContent=enabled?'Exit universe ×':'Expand universe ↗';
+    touchMode(enabled);renderer.resize();
+    if(enabled)canvas.focus({preventScroll:true});else expandButton.focus({preventScroll:true});
+  }
   const formats={rate:v=>`${v} days/s`,dt:v=>`${v.toFixed(2)} day`,mass:v=>`${v.toFixed(2)} M☉`,gravity:v=>`${v.toFixed(2)} G₀`,alpha:v=>`${Math.round(v*100)}%`};
   const value=name=>Number(controls[name].value);
   const pauseButton=root.querySelector('[data-lab-action="pause"]');
@@ -22,6 +40,7 @@ function init(){
   function readings(){
     get('clock').textContent=`Day ${(sim.time*365.25).toFixed(1)}`;
     get('body-name').textContent=selected===null?'Solar system':sim.bodies[selected].name;
+    get('scene-focus').textContent=selected===null?'Solar system':sim.bodies[selected].name;
     const o=sim.orbital(selected??0);
     for(const name of ['distance','velocity','axis','eccentricity','period'])get(name).textContent='—';
     if(o){
@@ -60,6 +79,8 @@ function init(){
       // Drop excess wall-clock demand, never enlarge a physical integration step.
       accumulator=Math.min(accumulator,value('dt')*160);
     }
+    renderer.time=now/1000;
+    if(autoOrbit&&!drag)renderer.yaw+=delta*.07;
     render();if(now-lastData>150){readings();lastData=now;}
     raf=requestAnimationFrame(frame);
   }
@@ -100,21 +121,31 @@ function init(){
     if(action==='top'){renderer.pitch=0;renderer.yaw=0}
     if(action==='zoom-in')renderer.zoom=Math.min(20,renderer.zoom*1.25);
     if(action==='zoom-out')renderer.zoom=Math.max(.1,renderer.zoom/1.25);
-    if(action==='rotate'){
-      rotating=!rotating;canvas.classList.toggle('is-interactive',rotating);button.setAttribute('aria-pressed',String(rotating));
-      get('hint').textContent=rotating?'Drag the scene to rotate. Turn Rotate view off to scroll from the canvas.':'Swipe to scroll. Enable Rotate view to drag the scene.';
-    }
+    if(action==='rotate')touchMode(!rotating);
+    if(action==='auto'){autoOrbit=!autoOrbit;button.setAttribute('aria-pressed',String(autoOrbit))}
+    if(action==='immersive')immersive(!expanded);
   }));
   canvas.addEventListener('pointerdown',e=>{
     if(e.pointerType!=='mouse'&&!rotating)return;
+    pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
     drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);
+    if(pointers.size===2){const [a,b]=[...pointers.values()];pinch={distance:Math.hypot(a.x-b.x,a.y-b.y),zoom:renderer.zoom};}
   });
   canvas.addEventListener('pointermove',e=>{
+    if(!pointers.has(e.pointerId))return;
+    pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pointers.size>=2&&pinch){const [a,b]=[...pointers.values()];renderer.zoom=Math.max(.1,Math.min(20,pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,pinch.distance)));return;}
     if(!drag||e.pointerId!==drag.id)return;
     renderer.yaw+=(e.clientX-drag.x)*.006;renderer.pitch=Math.max(-1.5,Math.min(1.5,renderer.pitch+(e.clientY-drag.y)*.006));
     drag.x=e.clientX;drag.y=e.clientY;
   });
-  for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,()=>{drag=null});
+  for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,e=>{
+    pointers.delete(e.pointerId);pinch=null;
+    const remaining=pointers.entries().next().value;
+    drag=remaining?{id:remaining[0],x:remaining[1].x,y:remaining[1].y}:null;
+  });
+  canvas.addEventListener('wheel',e=>{e.preventDefault();renderer.zoom=Math.max(.1,Math.min(20,renderer.zoom*Math.exp(-e.deltaY*.0012)))},{passive:false});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(expanded)immersive(false);else if(rotating)touchMode(false)}});
   canvas.addEventListener('keydown',e=>{
     if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key))return;
     e.preventDefault();
