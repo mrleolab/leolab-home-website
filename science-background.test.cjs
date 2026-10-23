@@ -25,7 +25,7 @@ function sceneHarness(width, height) {
   };
   const source = fs.readFileSync(`${__dirname}/science-background.js`, 'utf8');
   vm.runInNewContext(source.replace('resize(); render(0); resume();',
-    'resize(); globalThis.testScene={render,points,palette,atoms,bonds};'), sandbox);
+    'resize(); globalThis.testScene={render,points,palette,atoms,bonds,stars};'), sandbox);
   return { ...sandbox.testScene, dots };
 }
 
@@ -49,11 +49,21 @@ test('all six scenes and transition frames render without clipping on phones', (
     for (let time = 0; time <= 18; time += .25) {
       scene.dots.length = 0;
       scene.render(time);
-      const particles = scene.dots.slice(-scene.points.length);
+      const particles = scene.dots.slice(2 + scene.stars.length);
+      assert(particles.length >= 3200, 'base model particles are always drawn');
       for (const [x, y, w, h] of particles) {
         assert(x >= 0 && x + w <= width, `particle outside ${width}px screen at ${time}s`);
         assert(y >= 0 && y + h <= 766, 'particle outside hero height');
       }
     }
   }
+});
+
+test('robot scenes use extra detail without increasing other scene draw counts',()=>{
+  const scene=sceneHarness(390,766);
+  const count=time=>{scene.dots.length=0;scene.render(time);return scene.dots.length-2-scene.stars.length;};
+  assert.equal(count(.5),3200);
+  assert.equal(count(6.5),6400);
+  assert.equal(count(9.5),6400);
+  assert.equal(count(12.5),3200);
 });
