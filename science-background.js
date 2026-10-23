@@ -23,7 +23,40 @@
     [[-.43,.65],[.44,.65]], [[-.43,.7],[.44,.7]],
     [[.04,-.3],[-.02,-.17]], [[.12,-.29],[.14,-.14]],
   ];
-  const palette = [[100,255,132], [202,228,255], [64,190,255], [180,146,255]];
+  const palette = [[100,255,132], [202,228,255], [100,235,255], [255,190,90], [64,190,255], [180,146,255]];
+  const shell=[218,239,255], orange=[255,157,55], metal=[105,150,181], cyan=[75,255,239];
+  // Original particle geometry, using Microduck's visible design as reference:
+  // https://pollen-robotics.com/microduck/ (no photo or CAD files redistributed).
+  // Parts: center, half-extents, color, sampling weight, optional ellipsoid.
+  const robotParts=[
+    [[0,-.48,0],[.39,.27,.24],shell,24], [[0,-.48,.25],[.31,.17,.01],metal,6],
+    [[-.15,-.51,.28],[.065,.065,.015],cyan,5,true], [[.15,-.51,.28],[.065,.065,.015],cyan,5,true],
+    [[0,-.37,.27],[.16,.018,.015],cyan,2], [[0,-.82,0],[.025,.1,.025],metal,2],
+    [[0,-.93,0],[.06,.06,.06],orange,2,true], [[0,.04,0],[.29,.25,.19],shell,18],
+    [[0,.02,.2],[.1,.1,.02],cyan,4,true], [[-.43,.03,0],[.075,.28,.08],metal,6],
+    [[.43,.03,0],[.075,.28,.08],metal,6], [[-.17,.53,0],[.09,.25,.1],shell,7],
+    [[.17,.53,0],[.09,.25,.1],shell,7], [[-.18,.84,.07],[.15,.08,.19],cyan,5],
+    [[.18,.84,.07],[.15,.08,.19],cyan,5],
+  ];
+  const duckParts=[
+    [[0,-.56,.02],[.44,.25,.25],shell,28,true], [[0,-.58,.23],[.32,.16,.035],metal,7],
+    [[-.09,-.58,.28],[.12,.12,.025],orange,5,true], [[-.09,-.58,.31],[.065,.065,.02],cyan,4,true],
+    [[0,-.34,.15],[.42,.045,.24],orange,9], [[0,-.12,0],[.065,.2,.065],metal,6],
+    [[0,.14,-.03],[.26,.16,.19],shell,13,true], [[-.25,.3,0],[.1,.12,.12],shell,4,true],
+    [[.25,.3,0],[.1,.12,.12],shell,4,true], [[-.25,.46,-.02],[.075,.18,.08],metal,6],
+    [[.25,.46,-.02],[.075,.18,.08],metal,6], [[-.23,.65,.05],[.065,.13,.07],metal,5],
+    [[.23,.65,.05],[.065,.13,.07],metal,5], [[-.25,.82,.13],[.17,.065,.25],orange,8],
+    [[.25,.82,.13],[.17,.065,.25],orange,8],
+  ];
+  function sampleRobot(parts) {
+    let ticket=random()*parts.reduce((sum,p)=>sum+p[3],0), part=parts[parts.length-1];
+    for(const p of parts){ticket-=p[3];if(ticket<=0){part=p;break;}}
+    const [center,radii,color,,round]=part;
+    let local;
+    if(round){const z=random()*2-1,a=random()*TAU,r=Math.sqrt(1-z*z);local=[Math.cos(a)*r,z,Math.sin(a)*r];}
+    else {local=[random()*2-1,random()*2-1,random()*2-1];local[Math.floor(random()*3)]=random()<.5?-1:1;}
+    return {position:local.map((v,k)=>center[k]+v*radii[k]),color};
+  }
   const orbitColors = [[115,221,255],[130,155,255],[69,255,180],[255,112,151],[255,186,84],[234,148,255],[93,241,245],[131,158,255]];
   // Truncated icosahedron: 60 atoms and 90 bonds, the C60 cage geometry.
   const phi = (1 + Math.sqrt(5)) / 2, atoms = [];
@@ -81,7 +114,8 @@
         if(planet===2 && Math.sin(p*4+z*8)>.35)solarColor=[75,193,124].map(c=>Math.round(c*light));
         if(planet===5 && i%3===0){const ring=random()*TAU,ringR=size*(1.4+random()*.7);solar=[Math.cos(a)*r+Math.cos(ring)*ringR,Math.sin(a)*r*.6+Math.sin(ring)*ringR*.35,Math.sin(ring)*ringR];solarColor=[211,185,144];}
       }
-      return { shapes: [dna, scope, solar, molecule], solarColor, size: .75 + random() * .65, alpha: .65 + random() * .35 };
+      const robot=sampleRobot(robotParts),duck=sampleRobot(duckParts);
+      return { shapes: [dna, scope, robot.position, duck.position, solar, molecule], robotColor:robot.color, duckColor:duck.color, solarColor, size: .75 + random() * .65, alpha: .65 + random() * .35 };
     });
     stars = Array.from({ length: mobile ? 140 : 340 }, () => ({ x: random(), y: random(), size: random() * 1.2 + .2, alpha: .1 + random() * .45 }));
   }
@@ -99,7 +133,7 @@
     const cx = width * (mobile ? .5 : .64), cy = height * (mobile ? .4 : .5);
     // Fit the entire rotating cage/solar system inside narrow screens,
     // including perspective magnification and the morph between shapes.
-    const scale = Math.min(width * (mobile ? .39 : .48), height * .57);
+    const scale = Math.min(width * (mobile ? .43 : .48), height * .57);
     const glow = ctx.createRadialGradient(cx,cy,0,cx,cy,scale*1.5);
     glow.addColorStop(0, '#0b1530'); glow.addColorStop(1, '#040610');
     ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height);
@@ -108,14 +142,15 @@
       ctx.fillRect(star.x * width, star.y * height, star.size, star.size);
     }
     // Three-second scenes, including a smooth 0.84-second particle morph.
-    const cycle = time / 3, scene = Math.floor(cycle) % 4;
+    const cycle = time / 3, scene = Math.floor(cycle) % palette.length;
     const blend = Math.max(0, Math.min(1, ((cycle % 1) - .72) / .28));
-    const ease = blend * blend * (3 - 2 * blend), next = (scene + 1) % 4;
+    const ease = blend * blend * (3 - 2 * blend), next = (scene + 1) % palette.length;
     const rotation = time * .32, cos = Math.cos(rotation), sin = Math.sin(rotation);
     const rotated=(v,kind)=> {
       if(kind===1)return [v[0]+v[2]*Math.sin(rotation)*.35,v[1],v[2]];
+      if(kind===2||kind===3){const a=.4*Math.sin(time*.7),c=Math.cos(a),s=Math.sin(a);return [v[0]*c+v[2]*s,v[1],-v[0]*s+v[2]*c];}
       // Keep the orbital plane readable rather than turning it edge-on.
-      if(kind===2){const a=time*.09,c=Math.cos(a),s=Math.sin(a);return [v[0]*c-v[1]*s,v[0]*s+v[1]*c,v[2]];}
+      if(kind===4){const a=time*.09,c=Math.cos(a),s=Math.sin(a);return [v[0]*c-v[1]*s,v[0]*s+v[1]*c,v[2]];}
       const x=v[0]*cos+v[2]*sin,z=-v[0]*sin+v[2]*cos;
       return [x,v[1],z];
     };
@@ -123,8 +158,8 @@
       const a = rotated(point.shapes[scene],scene), b = rotated(point.shapes[next],next);
       let x = a[0] + (b[0]-a[0])*ease, y = a[1] + (b[1]-a[1])*ease, z = a[2] + (b[2]-a[2])*ease;
       const depth = 1 / (1 - z * .24);
-      const colorA = scene === 2 ? point.solarColor : palette[scene];
-      const colorB = next === 2 ? point.solarColor : palette[next];
+      const colorFor=kind=>kind===2?point.robotColor:kind===3?point.duckColor:kind===4?point.solarColor:palette[kind];
+      const colorA = colorFor(scene), colorB = colorFor(next);
       const color = colorA.map((v,i) => Math.round(v + (colorB[i]-v)*ease));
       ctx.fillStyle = `rgba(${color.join(',')},${point.alpha * Math.min(1,depth)})`;
       const size = point.size * depth;
