@@ -179,5 +179,6 @@ function init(){
   new ResizeObserver(()=>{renderer.resize();render()}).observe(canvas);
   new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;resume()},{rootMargin:'40px'}).observe(root);
   document.addEventListener('visibilitychange',resume);
+  touchMode(true);
   renderer.span=2.1;renderer.resize();updateOutputs();status();readings();render();
 }
