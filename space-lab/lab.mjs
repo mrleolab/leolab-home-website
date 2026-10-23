@@ -21,7 +21,7 @@ function init(){
   let selected=3,paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let visible=false,raf=0,last=null,accumulator=0,lastData=0,lastTrail=0;
   let rotating=false,drag=null,history=sim.bodies.map(()=>[]);
-  let autoOrbit=false,expanded=false,pinch=null;
+  let autoOrbit=false,expanded=false,pinch=null,touchBeforeImmersive=true;
   const pointers=new Map(),stage=canvas.parentElement;
   const touchButton=root.querySelector('[data-lab-action="rotate"]');
   const expandButton=root.querySelector('[data-lab-action="immersive"]');
@@ -34,9 +34,10 @@ function init(){
     pointers.clear();drag=null;pinch=null;
   }
   function immersive(enabled){
+    if(enabled)touchBeforeImmersive=rotating;
     expanded=enabled;stage.classList.toggle('is-expanded',enabled);document.body.classList.toggle('lab-immersive-open',enabled);
     expandButton.setAttribute('aria-pressed',String(enabled));expandButton.textContent=enabled?'Exit universe ×':'Expand universe ↗';
-    touchMode(enabled);renderer.resize();
+    touchMode(enabled||touchBeforeImmersive);renderer.resize();
     if(enabled)canvas.focus({preventScroll:true});else expandButton.focus({preventScroll:true});
   }
   const formats={rate:v=>`${v} days/s`,dt:v=>`${v.toFixed(2)} day`,mass:v=>`${v.toFixed(2)} M☉`,gravity:v=>`${v.toFixed(2)} G₀`,alpha:v=>`${Math.round(v*100)}%`};
