@@ -7,10 +7,17 @@ function init(){
   const get=name=>root.querySelector(`[data-lab="${name}"]`);
   const controls=Object.fromEntries([...root.querySelectorAll('[data-lab-control]')].map(el=>[el.dataset.labControl,el]));
   const sim=new Simulation(), canvas=get('canvas');
+  const epochLabel=document.createElement('p');epochLabel.className='lab-measure-note';epochLabel.textContent='Solar system / J2000 initial conditions';root.querySelector('.lab-readings').append(epochLabel);
+  const popup=document.createElement('div');popup.className='lab-planet-popover';popup.hidden=true;popup.setAttribute('role','region');popup.setAttribute('aria-label','Selected planet details');
+  const closePopup=document.createElement('button');closePopup.type='button';closePopup.className='lab-planet-close';closePopup.textContent='×';closePopup.setAttribute('aria-label','Close planet details');
+  const popupName=document.createElement('strong'),popupType=document.createElement('small'),popupData=document.createElement('p');
+  popup.append(closePopup,popupName,popupType,popupData);canvas.parentElement.append(popup);closePopup.addEventListener('click',()=>{popup.hidden=true});
+  const descriptions=['Sun · 太阳 / Star','Mercury · 水星 / Rocky planet','Venus · 金星 / Cloud-covered planet','Earth · 地球 / Ocean planet','Mars · 火星 / Rocky planet','Jupiter · 木星 / Gas giant','Saturn · 土星 / Ringed gas giant','Uranus · 天王星 / Ice giant','Neptune · 海王星 / Ice giant'];
   let renderer;
   try { renderer=new Renderer(canvas); } catch { get('status').textContent='3D view unavailable';get('notice').textContent='The 3D view could not start. Try enabling hardware acceleration or reopening this page.';return; }
   if(!renderer.gl&&!renderer.ctx){get('status').textContent='Graphics unavailable';return}
   get('renderer').textContent=renderer.gl?'WEBGL / 3D':'2D PROJECTED VIEW';
+  renderer.texturePromise?.then(ready=>{get('renderer').textContent=ready?'WEBGL / PLANET SURFACE MAPS':'WEBGL / MAPS UNAVAILABLE';});
   let selected=3,paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let visible=false,raf=0,last=null,accumulator=0,lastData=0,lastTrail=0;
   let rotating=false,drag=null,history=sim.bodies.map(()=>[]);
@@ -49,6 +56,10 @@ function init(){
       get('axis').textContent=o.bound?`${o.a.toFixed(4)} AU`:'Unbound';
       get('eccentricity').textContent=o.e.toFixed(5);
       get('period').textContent=o.bound?`${o.period.toFixed(3)} years`:'Escape trajectory';
+    }
+    if(!popup.hidden && selected!==null){
+      popupName.textContent=sim.bodies[selected].name;popupType.textContent=descriptions[selected];
+      popupData.textContent=o?`${o.distance.toFixed(3)} AU from Sun · ${o.speed.toFixed(2)} km/s`:`Central star · ${sim.starMass.toFixed(2)} solar masses`;
     }
     const drift=Math.abs((sim.energy()-sim.referenceEnergy)/sim.referenceEnergy)*100;
     get('energy').textContent=`${drift.toFixed(5)}%`;
@@ -96,18 +107,20 @@ function init(){
     root.querySelectorAll('[data-lab-preset]').forEach(b=>b.classList.remove('is-active'));
     readings();
   });
-  get('focus').addEventListener('change',()=>{
-    selected=get('focus').value==='system'?null:Number(get('focus').value);
+  function focusBody(index,showPopup=false){
+    selected=index;get('focus').value=index===null?'system':String(index);
     if(selected===null){renderer.span=35;renderer.zoom=1;}
-    else {renderer.span=Math.max(1.5,Math.min(35,selected?norm(sub(sim.bodies[selected].p,sim.bodies[0].p))*1.3:6.5));renderer.zoom=1;}
-    readings();
-  });
+    else {renderer.span=Math.max(.25,Math.min(4,selected?norm(sub(sim.bodies[selected].p,sim.bodies[0].p))*.35:2.1));renderer.zoom=1;}
+    popup.hidden=!showPopup||selected===null;readings();
+  }
+  get('focus').addEventListener('change',()=>focusBody(get('focus').value==='system'?null:Number(get('focus').value),true));
   function preset(name){
     controls.rate.value=30;controls.dt.value=.25;controls.mass.value=name==='gravity'?2:1;
     controls.gravity.value=name==='escape'?.4:1;controls.alpha.value=.35;
     sim.setParameters(value('gravity'),value('mass'));sim.reset();clearTrails();accumulator=0;
     renderer.span=2.1;renderer.zoom=1;renderer.pitch=.72;renderer.focus=[0,0,0];
     selected=3;get('focus').value='3';paused=false;status();updateOutputs();readings();
+    popup.hidden=true;
     get('notice').textContent=name==='gravity'?'Experiment: solar mass doubled with the original velocities. Watch the orbits become more eccentric.':name==='escape'?'Experiment: G reduced to 0.4 G₀ with the original velocities. Watch Earth transition to an unbound trajectory.':'Experiment: change solar mass while running and observe the orbit respond over time.';
     root.querySelectorAll('[data-lab-preset]').forEach(b=>b.classList.toggle('is-active',b.dataset.labPreset===name));
   }
@@ -117,7 +130,7 @@ function init(){
     if(action==='pause'){paused=!paused;accumulator=0;status()}
     if(action==='step'){paused=true;accumulator=0;integrate();status();readings()}
     if(action==='reset'){preset('solar')}
-    if(action==='inner'||action==='all'){selected=null;get('focus').value='system';renderer.span=action==='all'?35:2.1;renderer.zoom=1;readings()}
+    if(action==='inner'||action==='all'){selected=null;popup.hidden=true;get('focus').value='system';renderer.span=action==='all'?35:2.1;renderer.zoom=1;readings()}
     if(action==='top'){renderer.pitch=0;renderer.yaw=0}
     if(action==='zoom-in')renderer.zoom=Math.min(20,renderer.zoom*1.25);
     if(action==='zoom-out')renderer.zoom=Math.max(.1,renderer.zoom/1.25);
@@ -125,13 +138,16 @@ function init(){
     if(action==='auto'){autoOrbit=!autoOrbit;button.setAttribute('aria-pressed',String(autoOrbit))}
     if(action==='immersive')immersive(!expanded);
   }));
+  let tap=null;
   canvas.addEventListener('pointerdown',e=>{
+    tap=pointers.size?null:{id:e.pointerId,x:e.clientX,y:e.clientY,moved:false};
     if(e.pointerType!=='mouse'&&!rotating)return;
     pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
     drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);
     if(pointers.size===2){const [a,b]=[...pointers.values()];pinch={distance:Math.hypot(a.x-b.x,a.y-b.y),zoom:renderer.zoom};}
   });
   canvas.addEventListener('pointermove',e=>{
+    if(tap&&tap.id===e.pointerId&&Math.hypot(e.clientX-tap.x,e.clientY-tap.y)>8)tap.moved=true;
     if(!pointers.has(e.pointerId))return;
     pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
     if(pointers.size>=2&&pinch){const [a,b]=[...pointers.values()];renderer.zoom=Math.max(.1,Math.min(20,pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,pinch.distance)));return;}
@@ -140,6 +156,11 @@ function init(){
     drag.x=e.clientX;drag.y=e.clientY;
   });
   for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,e=>{
+    if(name==='pointerup'&&tap?.id===e.pointerId&&!tap.moved){
+      const rect=canvas.getBoundingClientRect(),hit=renderer.hitTest(e.clientX-rect.left,e.clientY-rect.top);
+      if(hit!==null)focusBody(hit,true);else popup.hidden=true;
+    }
+    tap=null;
     pointers.delete(e.pointerId);pinch=null;
     const remaining=pointers.entries().next().value;
     drag=remaining?{id:remaining[0],x:remaining[1].x,y:remaining[1].y}:null;

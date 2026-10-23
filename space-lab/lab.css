@@ -50,6 +50,14 @@
 .lab-theory p { font-size:11px; line-height:1.8; color:#a4b6cc; }
 .lab-theory .lab-formula { color:#d3e9fc; font-family:monospace; overflow-wrap:anywhere; }
 .lab-theory a { color:#9be8d2; }
+.lab-map-credit { margin:0; padding:12px 22px; color:#839aaf; font-size:10px; line-height:1.7; }
+.lab-map-credit a { color:#accbbc; }
+.lab-planet-popover { position:absolute; right:16px; top:64px; width:210px; max-width:52%; padding:20px 15px 15px; border:1px solid #517f80; border-radius:12px; background:#0a1829f5; box-shadow:0 12px 40px #0006; color:#ecfff8; }
+.lab-planet-popover[hidden] { display:none; }
+.lab-planet-popover strong { display:block; font:500 24px/1.3 'Inter',Arial,sans-serif; }
+.lab-planet-popover small { display:block; color:#9ad8c8; margin:7px 0; font-size:10px; line-height:1.7; }
+.lab-planet-popover p { margin:8px 0 0; color:#b1c8df; font:11px/1.8 monospace; }
+.space-lab .lab-planet-close { position:absolute; top:4px; right:4px; min-height:30px; padding:2px 8px; border:0; background:transparent; font-size:20px; }
 .lab-stage { background:radial-gradient(ellipse at 65% 35%,#142d46 0%,#080d22 48%,#02050e 100%); }
 .lab-floating-title { position:absolute; top:64px; left:22px; display:grid; gap:6px; pointer-events:none; }
 .lab-floating-title > span { font:8px/1.5 monospace; letter-spacing:.16em; color:#7395ad; }
