@@ -137,6 +137,7 @@ function init(){
     if(action==='rotate')touchMode(!rotating);
     if(action==='auto'){autoOrbit=!autoOrbit;button.setAttribute('aria-pressed',String(autoOrbit))}
     if(action==='immersive')immersive(!expanded);
+    if(action==='exit-immersive')immersive(false);
   }));
   let tap=null;
   canvas.addEventListener('pointerdown',e=>{

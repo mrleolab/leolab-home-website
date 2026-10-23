@@ -37,10 +37,13 @@
 .lab-stage canvas.is-interactive { touch-action:none; }
 .lab-stage-top { position:absolute; inset:18px 16px auto; display:flex; align-items:center; justify-content:space-between; gap:8px; color:#718ca7; font:9px/1.5 monospace; pointer-events:none; }
 .lab-live { padding:6px 9px; color:#95f0cf; background:#0a2d24d9; border:1px solid #2b6955; border-radius:5px; }
-.lab-stage-bottom { position:absolute; inset:auto 12px 16px; pointer-events:none; }
-.lab-stage-caption { display:block; margin:0 0 12px; text-align:center; color:#6c91ad; font:9px/1.5 monospace; letter-spacing:.08em; }
-.lab-view-buttons { display:flex; flex-wrap:wrap; gap:5px; justify-content:center; pointer-events:auto; }
-.lab-view-buttons button { padding:7px 9px; font-size:10px; background:#111f32ed; }
+.lab-view-controls { margin-top:22px; padding-top:18px; border-top:1px solid var(--lab-line); }
+.lab-view-controls .lab-panel-title { margin-bottom:12px; }
+.lab-view-buttons { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.lab-view-buttons button { padding:9px 5px; min-height:44px; font-size:11px; background:#111f32ed; }
+.lab-view-buttons button:last-child { grid-column:1/-1; }
+.space-lab .lab-immersive-close { display:none; }
+.space-lab .lab-stage.is-expanded .lab-immersive-close { display:block; position:absolute; right:16px; bottom:max(20px,env(safe-area-inset-bottom)); min-height:44px; background:#102638ed; border-color:#70bca6; }
 .lab-notice { padding:15px 22px; margin:0; border-top:1px solid var(--lab-line); color:#9fc0d0; font-size:12px; line-height:1.7; }
 .lab-theory { border-top:1px solid var(--lab-line); background:#101a2a; }
 .lab-theory summary { display:flex; justify-content:space-between; gap:20px; padding:18px 22px; color:#c6d7ea; list-style:none; cursor:pointer; font-size:12px; }
@@ -66,7 +69,6 @@
 .space-lab .lab-stage.is-expanded { position:fixed; z-index:100; inset:0; min-height:0; height:100dvh; border-radius:0; }
 body.lab-immersive-open { overflow:hidden; }
 .lab-stage.is-expanded .lab-floating-title { top:70px; left:5vw; }
-.lab-stage.is-expanded .lab-stage-bottom { bottom:max(24px,env(safe-area-inset-bottom)); }
 .lab-stage.is-expanded canvas { touch-action:none; }
 .lab-stage.is-expanded .lab-stage-top { top:max(20px,env(safe-area-inset-top)); }
 .space-lab .lab-view-buttons button:last-child { border-color:#448b7f; color:#b4fce5; }
