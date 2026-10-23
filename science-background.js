@@ -23,7 +23,8 @@
     [[-.43,.65],[.44,.65]], [[-.43,.7],[.44,.7]],
     [[.04,-.3],[-.02,-.17]], [[.12,-.29],[.14,-.14]],
   ];
-  const palette = [[115,243,170], [166,204,255], [64,167,244], [153,128,255]];
+  const palette = [[100,255,132], [202,228,255], [64,190,255], [180,146,255]];
+  const orbitColors = [[115,221,255],[130,155,255],[69,255,180],[255,112,151],[255,186,84],[234,148,255],[93,241,245],[131,158,255]];
   // Truncated icosahedron: 60 atoms and 90 bonds, the C60 cage geometry.
   const phi = (1 + Math.sqrt(5)) / 2, atoms = [];
   for (const base of [[0,1,3*phi],[1,2+phi,2*phi],[phi,2,2*phi+1]]) {
@@ -64,18 +65,18 @@
       const orbit = 1 + i % 8, angle = random() * TAU;
       const radius = .14 + orbit * .105;
       let solar = [Math.cos(angle) * radius, Math.sin(angle) * radius * .6, Math.sin(angle) * radius * .3];
-      let solarColor = [55,147,224];
+      let solarColor = orbitColors[orbit - 1];
       if (i % 4 === 0) {
         const z = random() * 2 - 1, p = random() * TAU, r = Math.sqrt(1-z*z) * .15;
         solar = [Math.cos(p) * r, z * .15, Math.sin(p) * r];
-        solarColor = [255,180 + random() * 65,55];
+        solarColor = [255,205 + random() * 50,65];
       } else if (i % 4 === 1 || i % 8 === 2) {
         const planet = Math.floor(i / 8) % 8, a = planet * 2.4, r = .23 + planet * .095;
         const p = random() * TAU, z = random() * 2 - 1, size = [.027,.04,.045,.035,.072,.065,.05,.048][planet];
         const rr=Math.sqrt(1-z*z), px=Math.cos(p)*rr, pz=Math.sin(p)*rr;
         solar = [Math.cos(a) * r + px * size, Math.sin(a) * r * .6 + z * size, pz * size];
         const colors=[[170,170,174],[239,195,128],[64,155,255],[239,103,63],[221,170,120],[239,209,149],[111,231,227],[74,115,250]];
-        const light=.45+.55*Math.max(0,pz*.8-px*.6);
+        const light=.65+.35*Math.max(0,pz*.8-px*.6);
         solarColor=colors[planet].map(c=>Math.round(c*light));
         if(planet===2 && Math.sin(p*4+z*8)>.35)solarColor=[75,193,124].map(c=>Math.round(c*light));
         if(planet===5 && i%3===0){const ring=random()*TAU,ringR=size*(1.4+random()*.7);solar=[Math.cos(a)*r+Math.cos(ring)*ringR,Math.sin(a)*r*.6+Math.sin(ring)*ringR*.35,Math.sin(ring)*ringR];solarColor=[211,185,144];}
@@ -125,7 +126,7 @@
       const colorA = scene === 2 ? point.solarColor : palette[scene];
       const colorB = next === 2 ? point.solarColor : palette[next];
       const color = colorA.map((v,i) => Math.round(v + (colorB[i]-v)*ease));
-      ctx.fillStyle = `rgba(${color.join(',')},${point.alpha * Math.min(1,depth*.85)})`;
+      ctx.fillStyle = `rgba(${color.join(',')},${point.alpha * Math.min(1,depth)})`;
       const size = point.size * depth;
       ctx.fillRect(cx + x * scale * depth, cy + y * scale * depth, size, size);
     }
