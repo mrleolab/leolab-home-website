@@ -112,15 +112,17 @@
 
   .mobile-menu-toggle { display: grid; width: 42px; height: 42px; padding: 10px; border: 1px solid rgba(32, 55, 44, .2); border-radius: 50%; background: var(--cream); gap: 5px; place-content: center; cursor: pointer; }
   .mobile-menu-toggle span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
-  body.mobile-menu-open .mobile-menu-toggle { position: relative; z-index: 32; border-color: transparent; background: transparent; }
+  body.mobile-menu-open .mobile-menu-toggle { border-color: transparent; background: transparent; }
   body.mobile-menu-open .mobile-menu-toggle span:first-child { transform: translateY(7px) rotate(45deg); }
   body.mobile-menu-open .mobile-menu-toggle span:nth-child(2) { opacity: 0; }
   body.mobile-menu-open .mobile-menu-toggle span:last-child { transform: translateY(-7px) rotate(-45deg); }
 
-  .mobile-menu { position: fixed; z-index: 30; inset: 0; display: flex; flex-direction: column; min-height: 100dvh; overflow-y: auto; padding: 18px 7vw 28px; background: #fffdf8; color: var(--ink); opacity: 0; pointer-events: none; transform: translateX(100%); transition: opacity .22s ease, transform .22s ease; -webkit-overflow-scrolling: touch; overscroll-behavior-y: auto; }
-  body.mobile-menu-open { overflow: hidden; }
-  body.mobile-menu-open .mobile-menu { opacity: 1; pointer-events: auto; transform: translateX(0); }
-  .mobile-menu-head { display: flex; align-items: center; justify-content: space-between; min-height: 46px; }
+  /* Use the document as the only scroll container, including long submenus. */
+  .mobile-menu { display: none; position: static; flex: 0 0 100%; width: 100%; min-width: 0; padding: 0 0 24px; color: var(--ink); }
+  body.mobile-menu-open .mobile-menu { display: block; }
+  body.mobile-menu-open > main,
+  body.mobile-menu-open > footer { display: none; }
+  .mobile-menu-head { display: none; }
   .mobile-menu-close { appearance: none; border: 0; padding: 0; width: 42px; height: 42px; background: transparent; color: var(--ink); font: 400 42px/1 Arial, sans-serif; cursor: pointer; }
   .mobile-menu-links { margin-top: 30px; border-top: 1px solid var(--line); }
   .mobile-menu-links > a, .mobile-menu-links summary { display: flex; align-items: center; justify-content: space-between; min-height: 62px; padding: 0; border-bottom: 1px solid var(--line); color: inherit; font: 700 20px/1.2 'Inter', Arial, sans-serif; letter-spacing: -.035em; text-decoration: none; cursor: pointer; }
