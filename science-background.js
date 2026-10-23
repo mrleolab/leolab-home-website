@@ -107,8 +107,8 @@
       ctx.fillStyle = `rgba(174,205,240,${star.alpha * (.85 + .15 * Math.sin(time + star.x * 40))})`;
       ctx.fillRect(star.x * width, star.y * height, star.size, star.size);
     }
-    // Five-second scenes, including a 1.4-second particle morph.
-    const cycle = time / 5, scene = Math.floor(cycle) % 4;
+    // Three-second scenes, including a smooth 0.84-second particle morph.
+    const cycle = time / 3, scene = Math.floor(cycle) % 4;
     const blend = Math.max(0, Math.min(1, ((cycle % 1) - .72) / .28));
     const ease = blend * blend * (3 - 2 * blend), next = (scene + 1) % 4;
     const rotation = time * .32, cos = Math.cos(rotation), sin = Math.sin(rotation);
