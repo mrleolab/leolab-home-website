@@ -102,6 +102,16 @@
 .label-projects { color: #176c72; }
 .label-documents { color: #b3532d; }
 .label-operations { color: #6a3c99; }
+.security-group { margin: 5px 8px; border-bottom: 1px solid #dce4dc; }
+.security-group > summary { display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:46px; padding:9px 8px; font:650 15px/1.3 'Inter',Arial,sans-serif; cursor:pointer; list-style:none; }
+.security-group > summary::-webkit-details-marker { display:none; }
+.security-group > summary > span:last-child { flex-shrink:0; transition:transform .2s ease; }
+.security-group[open] > summary > span:last-child { transform:rotate(180deg); }
+.security-network > summary { color:#235f91; }
+.security-endpoint > summary { color:#496a32; }
+.security-identity > summary { color:#774b91; }
+.security-application > summary { color:#925321; }
+.security-group > summary:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
 .foundation-sources { margin: 9px 2px 2px; }
 .foundation-sources > summary { cursor: pointer; list-style: none; }
 .foundation-sources > summary::-webkit-details-marker { display: none; }
@@ -159,6 +169,14 @@
   .mobile-menu-links details > a { display: block; padding: 12px 0 12px 18px; color: var(--moss); font: 500 16px/1.3 'Inter', Arial, sans-serif; text-decoration: none; }
   .mobile-menu-links details > a:last-child { padding-bottom: 18px; }
   .mobile-menu-label { display: inline-flex; margin: 16px 0 3px 18px; padding: 5px 8px; border-radius: 999px; background: #edf2e3; font: 700 13px/1.2 'Inter', Arial, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+  .mobile-menu-links .security-group { margin:4px 0 4px 18px; }
+  .mobile-menu-links .security-group > summary { min-height:52px; padding:10px 6px; border-bottom:0; font-size:17px; color:inherit; letter-spacing:0; }
+  .mobile-menu-links .security-group > summary > span:first-child { font-size:17px; font-weight:650; }
+  .mobile-menu-links .security-group > a { padding-left:14px; }
+  .mobile-menu-links .security-network > summary { color:#235f91; }
+  .mobile-menu-links .security-endpoint > summary { color:#496a32; }
+  .mobile-menu-links .security-identity > summary { color:#774b91; }
+  .mobile-menu-links .security-application > summary { color:#925321; }
   .mobile-menu-links .foundation-sources { margin: 12px 0 0; border-top: 1px dashed var(--line); }
   .mobile-menu-links .foundation-sources > summary { min-height: 56px; padding: 0 0 0 18px; border-bottom: 0; }
   .mobile-menu-links .foundation-sources > summary .mobile-menu-label { margin: 0; }
