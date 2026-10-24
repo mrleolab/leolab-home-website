@@ -53,8 +53,9 @@
     document.querySelectorAll('a[href]').forEach(link => {
       const url = new URL(link.getAttribute('href'), location.href);
       if (url.origin !== location.origin) return;
-      if (url.pathname === '/knowledge-base/' || url.pathname === '/knowledge-base/zh-CN/') {
-        url.pathname = locale === 'zh-CN' ? '/knowledge-base/zh-CN/' : '/knowledge-base/';
+      if (url.pathname.startsWith('/knowledge-base/')) {
+        const chapter = url.pathname.replace(/^\/knowledge-base\/(?:zh-CN\/)?/, '');
+        url.pathname = (locale === 'zh-CN' ? '/knowledge-base/zh-CN/' : '/knowledge-base/') + chapter;
         link.setAttribute('href', url.pathname + url.search + url.hash);
       }
     });
