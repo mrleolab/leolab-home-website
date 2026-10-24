@@ -23,3 +23,8 @@ test('local Chessground module graph and engine assets are complete',()=>{
   assert.ok(fs.statSync(path.join(game,'vendor/stockfish/stockfish-19-lite-single.wasm')).size>1_000_000);
   assert.ok(fs.statSync(path.join(game,'source/leo-chess-source.tar.gz')).size<25*1024*1024);
 });
+test('chess page starts with the game instead of promotional introductory copy',()=>{
+  const html=fs.readFileSync(path.join(game,'index.html'),'utf8');
+  assert.doesNotMatch(html,/class="room-intro"|data-copy="(?:eyebrow|title|intro|local)"/);
+  assert.match(html,/id="board"/);
+});
