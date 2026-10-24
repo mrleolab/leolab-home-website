@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Leo Lab</title>
+  <rect width="64" height="64" rx="16" fill="#20372c"/>
+  <path d="M16 15h9v29h23v9H16z" fill="#a5f8d0"/>
+  <ellipse cx="45" cy="22" rx="13" ry="6" transform="rotate(-35 45 22)" fill="none" stroke="#a5f8d0" stroke-width="2.5"/>
+  <circle cx="45" cy="22" r="5" fill="#faf7ef"/>
+</svg>
