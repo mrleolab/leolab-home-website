@@ -19,4 +19,3 @@ Plan a small project with scope, milestones, risks, and a short retrospective. A
 :::note Check before registering
 Names, exam versions, fees, eligibility, and renewal policies can change. Follow the provider’s current documentation. A course completion certificate or badge is not necessarily a professional certification.
 :::
-

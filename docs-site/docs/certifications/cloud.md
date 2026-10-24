@@ -22,4 +22,3 @@ Deploy a small static website, configure permissions carefully, and learn to mon
 :::note Check before registering
 Names, exam versions, fees, eligibility, and renewal policies can change. Follow the provider’s current documentation. A course completion certificate or badge is not necessarily a professional certification.
 :::
-

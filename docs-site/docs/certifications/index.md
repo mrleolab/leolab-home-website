@@ -34,4 +34,3 @@ This is an independent learning directory, not an official provider or a guarant
 :::
 
 Official links reviewed on October 24, 2026. External pages may not follow the language selected on Leo Lab.
-

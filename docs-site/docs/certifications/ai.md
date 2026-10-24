@@ -21,4 +21,3 @@ Build a small experiment, explain its limitations, and document what data it use
 :::note Check before registering
 Names, exam versions, fees, eligibility, and renewal policies can change. Follow the provider’s current documentation. A course completion certificate or badge is not necessarily a professional certification.
 :::
-

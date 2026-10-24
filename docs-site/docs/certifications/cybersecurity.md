@@ -21,4 +21,3 @@ Start with fundamentals if you are new. Check experience and endorsement require
 :::note Check before registering
 Names, exam versions, fees, eligibility, and renewal policies can change. Follow the provider’s current documentation. A course completion certificate or badge is not necessarily a professional certification.
 :::
-
