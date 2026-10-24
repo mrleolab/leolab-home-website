@@ -1,0 +1,35 @@
+:root {
+  --ifm-color-primary: #245a43;
+  --ifm-color-primary-dark: #20513c;
+  --ifm-color-primary-darker: #1f4d39;
+  --ifm-color-primary-darkest: #193f2f;
+  --ifm-color-primary-light: #28634a;
+  --ifm-color-primary-lighter: #29684d;
+  --ifm-color-primary-lightest: #2f7557;
+  --ifm-background-color: #faf8f2;
+  --ifm-navbar-background-color: #faf8f2;
+  --ifm-font-family-base: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-heading-font-weight: 650;
+  --ifm-code-font-size: 90%;
+  --ifm-line-height-base: 1.8;
+  --ifm-navbar-height: 4.5rem;
+}
+[data-theme='dark'] {
+  --ifm-color-primary: #a5f8d0;
+  --ifm-background-color: #122019;
+  --ifm-navbar-background-color: #122019;
+}
+.navbar {box-shadow: none; border-bottom: 1px solid #245a4326;}
+.navbar__title {font-size: 1rem; letter-spacing: -.025em;}
+.markdown h1 {font-size: clamp(2.2rem, 5vw, 3.7rem); line-height: 1.12; letter-spacing: -.045em;}
+.markdown h2 {letter-spacing: -.025em; margin-top: 2.5rem;}
+.markdown > p:first-of-type {font-size: 1.15rem;}
+.theme-doc-sidebar-container {border-right-color: #245a4326 !important;}
+.menu__link {border-radius: 8px;}
+.pagination-nav__link {border-radius: 14px;}
+.footer {background: transparent; border-top: 1px solid #245a4326;}
+@media (max-width: 996px) {
+  .navbar__title {font-size: .86rem;}
+  .main-wrapper {overflow-wrap: anywhere;}
+  .markdown {font-size: 1rem;}
+}
