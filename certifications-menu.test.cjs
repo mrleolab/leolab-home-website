@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const html=fs.readFileSync(`${__dirname}/index.html`,'utf8');
 const groups=['AI &amp; Machine Learning','Cloud Computing','Networking','Cybersecurity','Servers &amp; Linux','Databases &amp; Data','DevOps &amp; Kubernetes','Project Management'];
-test('Resources opens a certification directory on desktop and mobile, retaining the old anchor',()=>{
+test('Resources opens only the certification directory on desktop and mobile',()=>{
   assert.match(html,/aria-controls="resources-popover" data-menu="resources-popover">Resources/);
   const desktop=html.match(/id="resources-popover" hidden>(.*?)<\/div>/)[1];
   const mobile=html.split('\n').find(l=>l.includes('data-resources-menu')).split('<details data-resources-menu>')[1];
@@ -11,7 +11,7 @@ test('Resources opens a certification directory on desktop and mobile, retaining
   assert.deepEqual(links(desktop),links(mobile));
   assert.ok(links(desktop).includes('knowledge-base/certifications/'));
   for(const menu of [desktop,mobile]){
-    assert.match(menu,/href="#work">Projects &amp; Resources/);
+    assert.doesNotMatch(menu,/Projects &amp; Resources|href="#work"/);
     assert.match(menu,/href="knowledge-base\/certifications\/">Certifications/);
   }
 });
