@@ -147,7 +147,11 @@
     const blend = Math.max(0, Math.min(1, ((cycle % 1) - .72) / .28));
     const ease = blend * blend * (3 - 2 * blend), next = (scene + 1) % palette.length;
     const rotation = time * .32, cos = Math.cos(rotation), sin = Math.sin(rotation);
+    // Reserve vertical headroom for the helix on desktop; other models and
+    // mobile keep their existing scale. Apply before morphing to avoid jumps.
+    const dnaFit=mobile?1:Math.min(.85,height*.42/scale);
     const rotated=(v,kind)=> {
+      if(kind===0)v=v.map(value=>value*dnaFit);
       if(kind===1)return [v[0]+v[2]*Math.sin(rotation)*.35,v[1],v[2]];
       if(kind===2||kind===3){const a=.4*Math.sin(time*.7),c=Math.cos(a),s=Math.sin(a);return [v[0]*c+v[2]*s,v[1],-v[0]*s+v[2]*c];}
       // Keep the orbital plane readable rather than turning it edge-on.
