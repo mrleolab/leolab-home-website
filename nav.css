@@ -49,6 +49,7 @@
 .games-popover a, .k12-education-popover a, .computer-science-popover a, .ai-skills-popover a, .coding-popover a, .enterprise-tools-popover a { display: block; padding: 10px 12px; border-radius: 7px; color: inherit; text-decoration: none; font: 500 14px/1.2 'Inter', Arial, sans-serif; }
 .games-popover a:hover, .games-popover a:focus-visible, .k12-education-popover a:hover, .k12-education-popover a:focus-visible, .computer-science-popover a:hover, .computer-science-popover a:focus-visible, .ai-skills-popover a:hover, .ai-skills-popover a:focus-visible, .coding-popover a:hover, .coding-popover a:focus-visible, .enterprise-tools-popover a:hover, .enterprise-tools-popover a:focus-visible { background: var(--lime); }
 .coding-popover { min-width: 216px; }
+.k12-education-popover { max-height: calc(100dvh - 80px); overflow-y: auto; }
 .ai-skills-popover { max-height: calc(100dvh - 80px); overflow-y: auto; }
 .computer-science-popover { max-height: calc(100dvh - 80px); overflow-y: auto; }
 .enterprise-tools-popover { max-height: calc(100dvh - 80px); overflow-y: auto; }
