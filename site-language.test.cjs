@@ -38,7 +38,7 @@ test('all owned pages load shared switching without duplicating large assets',()
   assert.match(code,/\[data-boardid\]/);
   assert.match(code,/location.pathname.startsWith\('\/games\/'\)/);
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
-  assert.match(html, /data-resources-menu>[\s\S]*?<\/details>\s*<details data-language-picker>/);
+  assert.match(html, /data-resources-menu>[\s\S]*?<\/details><a href="#notes">Blog<\/a>\s*<details data-language-picker>/);
 });
 test('all translated documentation routes and assets exist',()=>{
   const config=require('./docs-site/docusaurus.config.js');
