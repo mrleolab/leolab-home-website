@@ -6,7 +6,8 @@ module.exports = {
   trailingSlash: true,
   favicon: '/favicon.svg',
   onBrokenLinks: 'throw',
-  i18n: {defaultLocale: 'en', locales: ['en']},
+  i18n: {defaultLocale: 'en', locales: ['en', 'zh-CN'], localeConfigs: {en: {label: 'EN'}, 'zh-CN': {label: '中文'}}},
+  clientModules: ['./src/locale-memory.js'],
   presets: [['classic', {
     docs: {routeBasePath: '/', sidebarPath: './sidebars.js'},
     blog: false,
@@ -20,7 +21,8 @@ module.exports = {
       title: 'Leo Lab / Knowledge Base',
       items: [
         {href: 'https://leo.leolan.workers.dev/', label: 'Home', position: 'right', target: '_self'},
-        {href: 'https://github.com/mrleolab', label: 'GitHub', position: 'right'}
+        {href: 'https://github.com/mrleolab', label: 'GitHub', position: 'right'},
+        {type: 'localeDropdown', position: 'right'}
       ]
     },
     footer: {style: 'light', copyright: 'Leo Lab · Learn by building. Share what works.'},

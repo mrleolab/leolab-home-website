@@ -12,7 +12,7 @@
     isOpen = false;
     document.body.classList.remove('mobile-menu-open');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Open menu');
+    toggle.setAttribute('aria-label', window.LeoI18n?.t('Open menu') || 'Open menu');
     menu.setAttribute('aria-hidden', 'true');
     window.scrollTo({ top: savedScrollY, behavior: 'instant' });
   };
@@ -22,7 +22,7 @@
     isOpen = true;
     document.body.classList.add('mobile-menu-open');
     toggle.setAttribute('aria-expanded', 'true');
-    toggle.setAttribute('aria-label', 'Close menu');
+    toggle.setAttribute('aria-label', window.LeoI18n?.t('Close menu') || 'Close menu');
     menu.setAttribute('aria-hidden', 'false');
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
