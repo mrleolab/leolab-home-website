@@ -1,5 +1,6 @@
 /* [English, Simplified Chinese]. Product names and code deliberately stay unchanged. */
 window.LEO_TRANSLATIONS = [
+  ['Network & Cloud Security','网络与云安全'],['Endpoint Security','端点安全'],['Identity Security','身份安全'],['Application Security','应用安全'],
   ['Show analysis','显示分析'],['Computer elo:','电脑等级分：'],
   ['Chinese Language ↗','语文 ↗'],['Mathematics (PEP) ↗','人教版数学 ↗'],['Loss','败局'],['Win','胜局'],['Thinking…','思考中'],['In check!','被将军!'],['Play again','再来一局'],['View board','查看棋盘'],['Show legal move hints','显示走法提示'],['Hint level','提示水平'],['Done','完成'],['Custom endgame','自定义残局'],['Side to move:','先手方:'],['No piece at this position','该位置没有棋子'],['Both sides must have a king!','双方都必须有将和帅!'],['Kings face each other. Adjust the position!','将帅照面，请调整位置!'],['Endgame loaded','残局已加载'],['Beginner: about 2 plies, 0.3 seconds','入门：向前看约 2 步，约 0.3 秒'],['Amateur: about 3 plies, 0.8 seconds','业余：向前看约 3 步，约 0.8 秒'],['Expert: about 4 plies, 2 seconds','高手：向前看约 4 步，约 2 秒'],['Master: about 5 plies, 2.5 seconds','大师：向前看约 5 步，约 2.5 秒'],['Out of board','超出棋盘'],['A red pawn cannot be placed near its own palace','兵不能放在己方九宫一带'],['A black pawn cannot be placed near its own palace','卒不能放在己方九宫一带'],
   ['International Chess — Leo Lab','国际象棋 — Leo Lab'],['Chinese Chess — Leo Lab','中国象棋 — Leo Lab'],

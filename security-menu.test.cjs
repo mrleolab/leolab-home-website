@@ -11,6 +11,10 @@ test('desktop and mobile combine Security into Cybersecurity without changing Ne
     assert.equal((menu.match(/label-cybersecurity"/g) || []).length, 1);
     assert.match(menu, /label-networking">Networking/);
     const security = menu.split('label-cybersecurity">Cybersecurity</p>')[1].split('<p')[0];
+    assert.equal((security.match(/<details class="security-group /g) || []).length, 4);
+    for (const label of ['Network &amp; Cloud Security', 'Endpoint Security', 'Identity Security', 'Application Security']) {
+      assert.ok(security.includes(`<span>${label}</span>`), label);
+    }
     assert.equal((security.match(/<a /g) || []).length, 10);
     for (const name of ['Palo Alto Networks', 'Fortinet', 'Zscaler', 'Cloudflare Security', 'Cisco Security', 'CrowdStrike', 'Microsoft Security', 'SentinelOne', 'Okta', 'Snyk']) {
       assert.ok(security.includes(`${name} ↗`), name);
