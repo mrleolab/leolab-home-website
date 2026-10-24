@@ -24,7 +24,8 @@ You do not need to know a programming language to begin. You do need to read wha
 
 ## Before you start
 
-- A computer, a browser, and a Gmail address you can access. Another email provider also works; Gmail is simply the example here.
+- An Apple Mac computer running macOS. This guide follows a Mac-based workflow.
+- A browser and a Gmail address you can access. Another email provider also works; Gmail is simply the example here.
 - Access to Codex through your ChatGPT account. Availability depends on your current plan and workspace settings.
 - A simple idea: a personal homepage, a learning journal, or a community resource hub.
 - A way to record your account names and recovery details securely.
