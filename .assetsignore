@@ -1,4 +1,5 @@
 .git/
 docs-site/
+chess-app/
 *.test.cjs
 *.test.mjs
