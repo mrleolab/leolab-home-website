@@ -5,9 +5,9 @@ const path = require('node:path');
 const root = __dirname;
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 
-test('Building a Website is the first Coding link on desktop and mobile', () => {
-  assert.match(home, /id="coding-popover" hidden><a href="knowledge-base\/">Building a Website<\/a>/);
-  assert.match(home, /<summary>Coding <span>⌄<\/span><\/summary><a href="knowledge-base\/">Building a Website<\/a>/);
+test('Building a Website is first inside Learning on desktop and mobile', () => {
+  assert.match(home, /id="coding-popover" hidden><p class="menu-label label-learning">Learning<\/p><a href="knowledge-base\/">Building a Website<\/a><a href="https:\/\/code.org\//);
+  assert.match(home, /<summary>Coding <span>⌄<\/span><\/summary><p class="mobile-menu-label label-learning">Learning<\/p><a href="knowledge-base\/">Building a Website<\/a><a href="https:\/\/code.org\//);
 });
 
 test('Science and Competitions precede Blog and have matched desktop/mobile destinations', () => {
