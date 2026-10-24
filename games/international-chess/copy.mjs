@@ -2,7 +2,7 @@
 const copy = {
   home:['Back to Leo Lab','返回 Leo Lab'], gameName:['/ Chess','/ 国际象棋'], eyebrow:['THE CHESS ROOM','国际象棋室'], title:['Your next move.','下一步，由你。'],
   intro:['A clear board. A worthy opponent. Take your time.','清晰的棋盘，值得挑战的对手。慢慢思考，走好每一步。'], local:['ON-DEVICE AI','本地 AI'], private:['No account. No server. Just chess.','无需账号，无需服务器，专注对弈。'],
-  computer:['Stockfish 19','Stockfish 19'], you:['You','你'], white:['White','白方'], black:['Black','黑方'], controls:['Make it your game','设置你的对局'], level:['Difficulty','难度'],
+  computer:['AI · Stockfish 19','AI · Stockfish 19'], you:['You','你'], white:['White','白方'], black:['Black','黑方'], controls:['Make it your game','设置你的对局'], level:['Difficulty','难度'],
   casual:['Casual','休闲'], club:['Club','进阶'], advanced:['Advanced','高手'], expert:['Expert','专家'], color:['Play as','选择执子'], newGame:['New game','新对局'],
   apply:['Settings apply to your next game.','设置将在新对局中生效。'], undo:['Undo turn','悔棋'], flip:['Flip board','翻转棋盘'], hint:['Hint','提示'],
   boardHelp:['Tap a piece, then its destination. Dragging works too.','先点棋子，再点目标格，也可以拖动走子。'], tools:['Move list & study tools','棋谱与学习工具'], noMoves:['Your story starts with the first move.','从第一步开始，写下你的棋局。'],
