@@ -1,0 +1,10 @@
+{
+  "name": "leo-lab-chess-build",
+  "private": true,
+  "version": "1.0.0",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@lichess-org/chessground": "10.5.0",
+    "chess.js": "1.4.0"
+  }
+}

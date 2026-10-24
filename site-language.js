@@ -95,7 +95,7 @@
     document.addEventListener('keydown', event => { if (event.key === 'Escape') document.querySelectorAll('.language-picker').forEach(el => { el.open = false; }); });
     apply();
     // Only game UIs need dynamic DOM localization; never observe the animated homepage.
-    if (location.pathname.startsWith('/games/')) {
+    if (location.pathname.startsWith('/games/') && !document.body.hasAttribute('data-native-i18n')) {
       const observer = new MutationObserver(changes => {
         for (const change of changes) {
           if (change.type === 'characterData' || change.type === 'attributes') translate(change.target);
@@ -108,7 +108,7 @@
   window.LeoI18n = {t, translate, get locale() { return locale; }};
   function ready() {
     // Next's server-rendered chess UI must hydrate before localized text is applied.
-    if (location.pathname.startsWith('/games/international-chess/') && !document.querySelector('[data-boardid]')) {
+    if (location.pathname.startsWith('/games/international-chess/') && !document.body.hasAttribute('data-native-i18n') && !document.querySelector('[data-boardid]')) {
       const readyObserver = new MutationObserver(() => {
         if (document.querySelector('[data-boardid]')) { readyObserver.disconnect(); mount(); }
       });
