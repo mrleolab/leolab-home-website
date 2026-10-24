@@ -24,7 +24,8 @@ description: 用 Codex、GitHub 和 Cloudflare 建立自己的第一个网站。
 
 ## 开始前需要什么
 
-- 电脑、浏览器和可以收信的 Gmail。其他邮箱也可以，这里以 Gmail 为例。
+- 一台运行 macOS 的 Apple Mac 电脑。本教程以 Mac 为操作环境。
+- 浏览器和可以收信的 Gmail。其他邮箱也可以，这里以 Gmail 为例。
 - ChatGPT 账号与 Codex 权限；可用功能取决于当前套餐和工作区设置。
 - 一个简单的想法，例如个人主页、学习日志或社区资源导航。
 - 安全保存账号与恢复信息的方式。

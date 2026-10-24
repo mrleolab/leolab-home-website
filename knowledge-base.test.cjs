@@ -43,6 +43,8 @@ test('Docusaurus chapters are rendered with valid local links and assets', () =>
 
 test('guide keeps accounts, production verification, and purchase boundaries explicit', () => {
   const read = name => fs.readFileSync(path.join(root, 'docs-site/docs', name + '.md'), 'utf8');
+  assert.match(read('index'), /An Apple Mac computer running macOS/);
+  assert.match(fs.readFileSync(path.join(root,'docs-site/i18n/zh-CN/docusaurus-plugin-content-docs/current/index.md'),'utf8'), /Apple Mac 电脑/);
   assert.match(read('accounts'), /not creating a separate/);
   assert.match(read('deploy'), /Merge is not deployment/);
   assert.match(read('domain'), /Complete the purchase yourself/);

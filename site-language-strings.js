@@ -1,5 +1,6 @@
 /* [English, Simplified Chinese]. Product names and code deliberately stay unchanged. */
 window.LEO_TRANSLATIONS = [
+  ['Learning Materials ↗','教材资料 ↗'],
   ['Certifications','证书'],['Projects & Resources','项目与资源'],['AI & Machine Learning','AI 与机器学习'],['Servers & Linux','服务器与 Linux'],['Databases & Data','数据库与数据'],['DevOps & Kubernetes','DevOps 与 Kubernetes'],['Project Management','项目管理'],
   ['Official certification resources. Exam names, fees, prerequisites, and renewal rules may change; check the provider before registering.','官方认证资源。考试名称、费用、报考条件与续证规则可能变化；报名前请核对认证机构官网。'],
   ['Notes & Knowledge','笔记与知识管理'],['Tasks & Planning','待办与计划'],['Drawing & Writing','绘图与写作'],['Everyday Utilities','日常实用工具'],

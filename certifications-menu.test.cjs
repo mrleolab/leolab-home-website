@@ -3,7 +3,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const html=fs.readFileSync(`${__dirname}/index.html`,'utf8');
 const groups=['AI &amp; Machine Learning','Cloud Computing','Networking','Cybersecurity','Servers &amp; Linux','Databases &amp; Data','DevOps &amp; Kubernetes','Project Management'];
-test('Resources opens only the certification directory on desktop and mobile',()=>{
+test('Resources has matching certification and learning material links on desktop and mobile',()=>{
   assert.match(html,/aria-controls="resources-popover" data-menu="resources-popover">Resources/);
   const desktop=html.match(/id="resources-popover" hidden>(.*?)<\/div>/)[1];
   const mobile=html.split('\n').find(l=>l.includes('data-resources-menu')).split('<details data-resources-menu>')[1];
@@ -13,6 +13,7 @@ test('Resources opens only the certification directory on desktop and mobile',()
   for(const menu of [desktop,mobile]){
     assert.doesNotMatch(menu,/Projects &amp; Resources|href="#work"/);
     assert.match(menu,/href="knowledge-base\/certifications\/">Certifications/);
+    assert.match(menu,/href="https:\/\/drive.google.com\/drive\/folders\/12iHPPOLp1CZ3WUG6SZLDwFpVRFlTtwWx\?usp=sharing" target="_blank" rel="noreferrer">Learning Materials ↗/);
   }
 });
 test('Docusaurus certification guide has eight bilingual categories and all official links',()=>{
