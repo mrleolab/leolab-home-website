@@ -26,7 +26,7 @@ test('Science and Competitions precede Blog and have matched desktop/mobile dest
 });
 
 test('Docusaurus chapters are rendered with valid local links and assets', () => {
-  const files = fs.readdirSync(path.join(root, 'docs-site/docs'));
+  const files = fs.readdirSync(path.join(root, 'docs-site/docs')).filter(name => name.endsWith('.md'));
   assert.equal(files.length, 6);
   for (const name of ['index', 'accounts', 'build', 'deploy', 'domain', 'next-steps']) {
     const file = path.join(root, 'knowledge-base', name === 'index' ? '' : name, 'index.html');
