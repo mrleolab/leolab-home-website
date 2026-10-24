@@ -149,7 +149,7 @@
     const rotation = time * .32, cos = Math.cos(rotation), sin = Math.sin(rotation);
     // Reserve vertical headroom for the helix on desktop; other models and
     // mobile keep their existing scale. Apply before morphing to avoid jumps.
-    const dnaFit=mobile?1:Math.min(.85,height*.42/scale);
+    const dnaFit=mobile?1:Math.min(.85,height*.42/scale)*.8;
     const rotated=(v,kind)=> {
       if(kind===0)v=v.map(value=>value*dnaFit);
       if(kind===1)return [v[0]+v[2]*Math.sin(rotation)*.35,v[1],v[2]];
