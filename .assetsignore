@@ -1,0 +1,4 @@
+.git/
+docs-site/
+*.test.cjs
+*.test.mjs

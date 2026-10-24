@@ -1,0 +1,20 @@
+{
+  "name": "leo-lab-knowledge-base",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "docusaurus build",
+    "start": "docusaurus start"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "overrides": {
+    "tinypool": "2.2.0",
+    "serialize-javascript": "7.1.4"
+  },
+  "engines": { "node": ">=20.0" }
+}
