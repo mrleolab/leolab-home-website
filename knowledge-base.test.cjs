@@ -13,6 +13,8 @@ test('Building a Website is first inside Learning on desktop and mobile', () => 
 test('Science and Competitions precede Blog and have matched desktop/mobile destinations', () => {
   const desktop = home.match(/<nav aria-label="Primary">(.*?)<\/nav>/s)[1];
   assert.match(desktop, /Science.*Competitions.*Blog/s);
+  assert.match(desktop, /Resources[\s\S]*<a href="#notes">Blog<\/a>$/);
+  assert.match(home, /data-resources-menu>[\s\S]*?<\/details><a href="#notes">Blog<\/a>\s*<details data-language-picker>/);
   assert.equal((home.match(/NASA Eyes — Space Simulations/g) || []).length, 2);
   assert.equal((home.match(/CAP High School Prize Exam/g) || []).length, 2);
   for (const id of ['science', 'competitions']) {

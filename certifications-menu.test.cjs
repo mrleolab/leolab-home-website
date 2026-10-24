@@ -6,7 +6,7 @@ const groups=['AI &amp; Machine Learning','Cloud Computing','Networking','Cybers
 test('Resources has matching certification and learning material links on desktop and mobile',()=>{
   assert.match(html,/aria-controls="resources-popover" data-menu="resources-popover">Resources/);
   const desktop=html.match(/id="resources-popover" hidden>(.*?)<\/div>/)[1];
-  const mobile=html.split('\n').find(l=>l.includes('data-resources-menu')).split('<details data-resources-menu>')[1];
+  const mobile=html.split('\n').find(l=>l.includes('data-resources-menu')).split('<details data-resources-menu>')[1].split('</details>')[0];
   const links=s=>[...s.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
   assert.deepEqual(links(desktop),links(mobile));
   assert.ok(links(desktop).includes('knowledge-base/certifications/'));
