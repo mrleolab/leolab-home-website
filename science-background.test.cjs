@@ -67,3 +67,16 @@ test('robot scenes use extra detail without increasing other scene draw counts',
   assert.equal(count(9.5),6400);
   assert.equal(count(12.5),3200);
 });
+
+test('desktop DNA leaves vertical headroom throughout its rotation',()=>{
+  for(const [width,height] of [[1024,720],[1440,900],[1920,1080]]){
+    const scene=sceneHarness(width,height);
+    for(let time=0;time<=108;time+=18){
+      scene.dots.length=0;scene.render(time);
+      for(const [x,y,w,h] of scene.dots.slice(2+scene.stars.length)){
+        assert(y>=height*.02 && y+h<=height*.98,'DNA must stay inside desktop hero');
+        assert(x>=0 && x+w<=width,'DNA must fit horizontally');
+      }
+    }
+  }
+});
