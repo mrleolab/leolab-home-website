@@ -19,7 +19,7 @@ module.exports = {
     navbar: {
       title: 'Leo Lab / Knowledge Base',
       items: [
-        {href: '/', label: 'Home', position: 'right', target: '_self'},
+        {href: 'https://leo.leolan.workers.dev/', label: 'Home', position: 'right', target: '_self'},
         {href: 'https://github.com/mrleolab', label: 'GitHub', position: 'right'}
       ]
     },

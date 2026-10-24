@@ -49,4 +49,6 @@ test('guide keeps accounts, production verification, and purchase boundaries exp
   assert.match(read('build'), /"directory": "\.\/public"/);
   const ignore = fs.readFileSync(path.join(root, '.assetsignore'), 'utf8');
   assert.match(ignore, /docs-site\//);
+  const config = require('./docs-site/docusaurus.config.js');
+  assert.equal(config.themeConfig.navbar.items.find(item => item.label === 'Home').href, 'https://leo.leolan.workers.dev/');
 });
