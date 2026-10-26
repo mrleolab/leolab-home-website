@@ -1,5 +1,6 @@
 /* [English, Simplified Chinese]. Product names and code deliberately stay unchanged. */
 window.LEO_TRANSLATIONS = [
+  ['01 / CIRCUITS & ELECTRONICS','01 / 电路与电子'],['Circuits & Electronics Laboratory','电路与电子实验室'],
   ['01 / ARDUINO LABORATORY','01 / ARDUINO 实验室'],['02 / STARFIELD LABORATORY','02 / 星空实验室'],
   ['Automatic motor preview','电机自动演示'],['Local illustration only. The external course program still needs its own Run button.','本站示意动画。下方外部课程程序仍需点击它自己的“运行”按钮。'],['Pause preview','暂停演示'],['Resume preview','继续演示'],['The motor lesson is ready to use. Turn interaction off when you want to scroll over it.','默认显示“控制电机”课程，可直接操作；需要从课程区域滑动主页时，请关闭交互。'],
   ['03 / LEARNING NOTES & QUESTIONS','03 / 学习笔记与问题'],['04 / games','04 / 游戏'],['05 / things in progress','05 / 探索中的项目'],
