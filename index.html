@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="science-background.css" />
     <link rel="stylesheet" href="space-lab/lab.css" />
     <link rel="stylesheet" href="learning-sections.css" />
-    <link rel="stylesheet" href="arduino-embed.css" />
+    <link rel="stylesheet" href="arduino-embed.css?v=2" />
   <link rel="stylesheet" href="/site-language.css?v=1"></head>
   <body>
     <header class="nav">
@@ -90,11 +90,14 @@
       </section>
 
       <section class="arduino-lab" id="arduino-lab" aria-labelledby="arduino-title">
-        <div class="arduino-heading"><div><p class="index">02 / ARDUINO LABORATORY</p><h2 id="arduino-title">Arduino <em>Laboratory.</em></h2><p>Explore an interactive 3D board, circuits, and beginner electronics lessons.</p></div><a data-arduino-external href="https://learn-arduino-red.vercel.app/zh/#board" target="_blank" rel="noreferrer">Open the full course ↗</a></div>
-        <div class="arduino-toolbar"><button type="button" data-arduino-toggle aria-pressed="false" aria-controls="arduino-frame">Enable interaction</button><p>Enable interaction to use the course. Turn it off to scroll the page over the preview.</p></div>
-        <div class="arduino-preview" data-arduino-preview>
-          <iframe id="arduino-frame" title="Interactive Arduino course" src="https://learn-arduino-red.vercel.app/zh/#board" loading="lazy" referrerpolicy="no-referrer" allow="fullscreen" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" tabindex="-1"></iframe>
-          <button class="arduino-cover" type="button" data-arduino-start><span>Start the Arduino lab</span><small>Tap to interact · use the control above to return to page scrolling</small></button>
+        <div class="arduino-heading"><div><p class="index">02 / ARDUINO LABORATORY</p><h2 id="arduino-title">Arduino <em>Laboratory.</em></h2><p>Explore an interactive 3D board, circuits, and beginner electronics lessons.</p></div><a data-arduino-external href="https://learn-arduino-red.vercel.app/zh/#motor" target="_blank" rel="noreferrer">Open the full course ↗</a></div>
+        <div class="motor-demo" data-motor-demo>
+          <svg class="motor-illustration" viewBox="0 0 240 130" role="img" aria-label="Automatic motor preview"><rect x="30" y="43" width="120" height="54" rx="16" fill="#91a7ad"/><rect x="46" y="43" width="72" height="54" rx="8" fill="#d6e1e1"/><path d="M60 45v50m18-50v50m18-50v50" stroke="#799098" stroke-width="5"/><path d="M148 70h40" stroke="#50656b" stroke-width="10"/><circle cx="188" cy="70" r="41" fill="#e3eddf"/><g class="motor-rotor" fill="#2e6950"><path d="M188 70c-47-13-40-43-17-36 15 5 17 20 17 36Z"/><path d="M188 70c13-47 43-40 36-17-5 15-20 17-36 17Z"/><path d="M188 70c47 13 40 43 17 36-15-5-17-20-17-36Z"/><path d="M188 70c-13 47-43 40-36 17 5-15 20-17 36-17Z"/></g><circle cx="188" cy="70" r="8" fill="#1a3f31"/><path d="M30 52H15V20h55" fill="none" stroke="#d97c42" stroke-width="4"/></svg>
+          <div><strong>Automatic motor preview</strong><p>Local illustration only. The external course program still needs its own Run button.</p><button type="button" data-motor-toggle aria-pressed="false">Pause preview</button></div>
+        </div>
+        <div class="arduino-toolbar"><button type="button" data-arduino-toggle aria-pressed="true" aria-controls="arduino-frame">Return to page scrolling</button><p>The motor lesson is ready to use. Turn interaction off when you want to scroll over it.</p></div>
+        <div class="arduino-preview is-interactive" data-arduino-preview>
+          <iframe id="arduino-frame" title="Interactive Arduino course" src="https://learn-arduino-red.vercel.app/zh/#motor" loading="lazy" referrerpolicy="no-referrer" allow="fullscreen" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" tabindex="0"></iframe>
         </div>
         <p class="arduino-credit">Embedded external course. Content and interactions are provided by the original site.</p>
       </section>
@@ -139,7 +142,7 @@
     </div>
     <script src="/site-language-strings.js?v=1"></script>
     <script src="/site-language.js?v=1"></script>
-    <script src="arduino-embed.js"></script>
+    <script src="arduino-embed.js?v=2"></script>
     <script src="community.js"></script>
     <script src="games-menu.js"></script>
     <script src="mobile-menu.js"></script>
