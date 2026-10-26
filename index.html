@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="science-background.css" />
     <link rel="stylesheet" href="space-lab/lab.css" />
     <link rel="stylesheet" href="learning-sections.css" />
+    <link rel="stylesheet" href="arduino-embed.css" />
   <link rel="stylesheet" href="/site-language.css?v=1"></head>
   <body>
     <header class="nav">
@@ -86,6 +87,19 @@
           <p class="lab-map-credit">Surface maps: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noreferrer">Solar System Scope / INOVE</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>. Resized and projected for this visualization.</p>
           <noscript><p>Enable JavaScript to run the interactive laboratory.</p></noscript>
         </div>
+      </section>
+
+      <section class="arduino-lab" id="arduino-lab" aria-labelledby="arduino-title">
+        <div class="arduino-heading"><div><p class="index">02 / ARDUINO LABORATORY</p><h2 id="arduino-title">Arduino <em>Laboratory.</em></h2><p>Explore an interactive 3D board, circuits, and beginner electronics lessons.</p></div><a data-arduino-external href="https://learn-arduino-red.vercel.app/zh/#board" target="_blank" rel="noreferrer">Open the full course ↗</a></div>
+        <div class="arduino-toolbar"><button type="button" data-arduino-toggle aria-pressed="false" aria-controls="arduino-frame">Enable interaction</button><p>Enable interaction to use the course. Turn it off to scroll the page over the preview.</p></div>
+        <div class="arduino-preview" data-arduino-preview>
+          <iframe id="arduino-frame" title="Interactive Arduino course" src="https://learn-arduino-red.vercel.app/zh/#board" loading="lazy" referrerpolicy="no-referrer" allow="fullscreen" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" tabindex="-1"></iframe>
+          <button class="arduino-cover" type="button" data-arduino-start><span>Start the Arduino lab</span><small>Tap to interact · use the control above to return to page scrolling</small></button>
+        </div>
+        <p class="arduino-credit">Embedded external course. Content and interactions are provided by the original site.</p>
+      </section>
+
+      <section class="section" aria-label="Learning approach">
         <div class="learning-intro" aria-labelledby="learning-title">
           <p class="index">A PERSONAL LAB / A SHARED LEARNING JOURNEY</p>
           <div class="about-layout"><h2 id="learning-title">Learn the idea.<br /><em>Build the proof.</em></h2><div><p class="learning-lead">I’m building my path in computer science by connecting the foundations with things I can make, test, and understand.</p><p>Here, AI and coding sit alongside science experiments, university learning resources, and a community of curious people. The goal isn’t to know everything. It’s to ask better questions—and turn the next one into something useful.</p><a class="arrow-link" href="about-me/">Meet Leo &amp; explore the journey <span aria-hidden="true">→</span></a></div></div>
@@ -93,7 +107,7 @@
         </div></section>
 
       <section class="notes section learning-notes" id="notes" aria-labelledby="notes-title">
-        <div class="notes-head"><p class="index">02 / LEARNING NOTES &amp; QUESTIONS</p><h2 id="notes-title">Follow a question.<br /><em>Find your next step.</em></h2><p class="notes-description">A few starting points from this lab: ideas to unpack, experiments to try, and habits to build. Open a note and keep exploring.</p></div>
+        <div class="notes-head"><p class="index">03 / LEARNING NOTES &amp; QUESTIONS</p><h2 id="notes-title">Follow a question.<br /><em>Find your next step.</em></h2><p class="notes-description">A few starting points from this lab: ideas to unpack, experiments to try, and habits to build. Open a note and keep exploring.</p></div>
         <div class="learning-notes-grid">
           <details class="learning-note"><summary><span class="note-category">01 / COMPUTER SCIENCE</span><h3>Build foundations.<br />Not just a toolset.</h3><p>Connect what you code with how the system works.</p><span class="note-toggle" aria-hidden="true">+</span><span class="note-open-label">Read the note</span></summary><div class="note-body"><p>A language is a starting point, not the whole picture. A useful learning question is: can I explain the data, the logic, and the decisions behind what I built?</p><p>Start with a small project, trace how information moves through it, and write down what you still need to understand. Then connect that question to the wider system: networks, databases, security, or the cloud.</p><a href="about-me/#interests-title">Explore my learning directions <span aria-hidden="true">↗</span></a></div></details>
           <details class="learning-note"><summary><span class="note-category">02 / SCIENCE IN PRACTICE</span><h3>Change gravity.<br />Question the orbit.</h3><p>Turn a physics formula into an experiment you can observe.</p><span class="note-toggle" aria-hidden="true">+</span><span class="note-open-label">Read the note</span></summary><div class="note-body"><p>In the Starfield Laboratory, increasing the Sun’s mass changes gravitational acceleration. It does not instantly assign a new velocity to a planet—the trajectory responds as the simulation advances.</p><p>Try it: pause the model, choose Earth, increase solar mass, then step forward. Compare the path, speed, and energy drift. Reset and repeat with a smaller integration step to see how numerical accuracy affects the experiment.</p><a href="#space-lab">Try it in the laboratory <span aria-hidden="true">↗</span></a></div></details>
@@ -101,9 +115,9 @@
         </div>
       </section>
 
-      <section class="games section" id="games"><p class="index">03 / games</p><div class="games-layout"><div><h2>Learn by<br /><em>playing.</em></h2><p>Small games and experiments for curious minds.</p></div><div class="games-grid"><a class="game-card chess-card" href="games/international-chess/" aria-label="Play International Chess"><span class="game-label">PROJECT 001</span><span class="game-icon" aria-hidden="true">♞</span><strong>International Chess</strong><small>Play Stockfish, explore each position, and learn from the analysis.</small><span class="game-play">Play now <i>↗</i></span></a><a class="game-card" href="games/chinese-chess/" aria-label="Play Chinese Chess"><span class="game-label">PROJECT 002</span><span class="game-icon" aria-hidden="true">象</span><strong>Chinese Chess</strong><small>Play against the computer, challenge a friend, or explore a custom board.</small><span class="game-play">Play now <i>↗</i></span></a></div></div></section>
+      <section class="games section" id="games"><p class="index">04 / games</p><div class="games-layout"><div><h2>Learn by<br /><em>playing.</em></h2><p>Small games and experiments for curious minds.</p></div><div class="games-grid"><a class="game-card chess-card" href="games/international-chess/" aria-label="Play International Chess"><span class="game-label">PROJECT 001</span><span class="game-icon" aria-hidden="true">♞</span><strong>International Chess</strong><small>Play Stockfish, explore each position, and learn from the analysis.</small><span class="game-play">Play now <i>↗</i></span></a><a class="game-card" href="games/chinese-chess/" aria-label="Play Chinese Chess"><span class="game-label">PROJECT 002</span><span class="game-icon" aria-hidden="true">象</span><strong>Chinese Chess</strong><small>Play against the computer, challenge a friend, or explore a custom board.</small><span class="game-play">Play now <i>↗</i></span></a></div></div></section>
 
-      <section class="work section" id="work"><p class="index">04 / things in progress</p><div class="cards"><article class="card lime"><p>01</p><span class="symbol">☼</span><h3>Sunny systems</h3><small>A gentle collection of tools for keeping projects moving.</small></article><article class="card moss"><p>02</p><span class="symbol">⌁</span><h3>Soft signals</h3><small>Notes on design, attention, and the way we work together.</small></article><article class="card peach"><p>03</p><span class="symbol">✽</span><h3>Good soil</h3><small>Experiments for a more thoughtful web.</small></article></div></section>
+      <section class="work section" id="work"><p class="index">05 / things in progress</p><div class="cards"><article class="card lime"><p>01</p><span class="symbol">☼</span><h3>Sunny systems</h3><small>A gentle collection of tools for keeping projects moving.</small></article><article class="card moss"><p>02</p><span class="symbol">⌁</span><h3>Soft signals</h3><small>Notes on design, attention, and the way we work together.</small></article><article class="card peach"><p>03</p><span class="symbol">✽</span><h3>Good soil</h3><small>Experiments for a more thoughtful web.</small></article></div></section>
 
       <section class="contact section" id="contact"><p class="kicker">A note is always welcome</p><h2>Let’s make<br />something <em>growing.</em></h2></section>
     </main>
@@ -125,6 +139,7 @@
     </div>
     <script src="/site-language-strings.js?v=1"></script>
     <script src="/site-language.js?v=1"></script>
+    <script src="arduino-embed.js"></script>
     <script src="community.js"></script>
     <script src="games-menu.js"></script>
     <script src="mobile-menu.js"></script>
