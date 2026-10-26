@@ -3,10 +3,16 @@
   if(!frame)return;
   const preview=document.querySelector('[data-arduino-preview]');
   const toggle=document.querySelector('[data-arduino-toggle]');
-  const start=document.querySelector('[data-arduino-start]');
   const external=document.querySelector('[data-arduino-external]');
-  let active=false;
-  const updateLabel=()=>{toggle.textContent=window.LeoI18n?.t(active?'Return to page scrolling':'Enable interaction')||(active?'Return to page scrolling':'Enable interaction');};
+  const demo=document.querySelector('[data-motor-demo]');
+  const demoToggle=document.querySelector('[data-motor-toggle]');
+  let active=true;
+  let paused=false;
+  const translated=text=>window.LeoI18n?.t(text)||text;
+  const updateLabel=()=>{
+    toggle.textContent=translated(active?'Return to page scrolling':'Enable interaction');
+    demoToggle.textContent=translated(paused?'Resume preview':'Pause preview');
+  };
   const setActive=value=>{
     active=value;
     preview.classList.toggle('is-interactive',active);
@@ -17,13 +23,18 @@
   };
   const syncLanguage=()=>{
     const locale=window.LeoI18n?.locale||document.documentElement.lang;
-    const src=`https://learn-arduino-red.vercel.app/${locale==='zh-CN'?'zh/':''}#board`;
-    if(frame.getAttribute('src')!==src){frame.src=src;if(active)setActive(false);}
+    const src=`https://learn-arduino-red.vercel.app/${locale==='zh-CN'?'zh/':''}#motor`;
+    if(frame.getAttribute('src')!==src)frame.src=src;
     external.href=src;
     updateLabel();
   };
   toggle.addEventListener('click',()=>setActive(!active));
-  start.addEventListener('click',()=>setActive(true));
+  demoToggle.addEventListener('click',()=>{
+    paused=!paused;
+    demo.classList.toggle('is-paused',paused);
+    demoToggle.setAttribute('aria-pressed',String(paused));
+    updateLabel();
+  });
   window.addEventListener('leo-language-change',syncLanguage);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',syncLanguage,{once:true});
   else syncLanguage();

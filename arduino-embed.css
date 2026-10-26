@@ -10,9 +10,14 @@
 .arduino-preview { position:relative; border:1px solid #c9d5c9; border-radius:18px; overflow:hidden; background:#fafafa; }
 .arduino-preview iframe { display:block; width:100%; height:min(82svh,900px); min-height:560px; border:0; pointer-events:none; }
 .arduino-preview.is-interactive iframe { pointer-events:auto; }
-.arduino-cover { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; width:100%; border:0; color:#173e2c; background:linear-gradient(transparent,#edf4e2b8); cursor:pointer; touch-action:pan-y; }
-.arduino-cover span { padding:15px 24px; border-radius:30px; background:#234d37; color:white; font-size:17px; font-weight:650; box-shadow:0 8px 30px #203b3133; }
-.arduino-cover small { max-width:340px; margin:0 20px; padding:8px; border-radius:10px; background:#ffffffdf; font-size:12px; line-height:1.6; }
-.arduino-preview.is-interactive .arduino-cover { display:none; }
+.motor-demo { display:flex; align-items:center; gap:20px; margin:18px 0; padding:12px 22px; background:#e5eddf; border:1px solid #cad8c6; border-radius:16px; }
+.motor-illustration { flex:0 0 180px; width:180px; height:100px; }
+.motor-rotor { transform-origin:188px 70px; animation:motor-spin .8s linear infinite; }
+.motor-demo.is-paused .motor-rotor { animation-play-state:paused; }
+.motor-demo p { max-width:620px; margin:6px 0; font-size:12px; line-height:1.6; color:#52635b; }
+.motor-demo button { min-height:40px; border:0; background:transparent; padding:6px 0; color:#23523a; text-decoration:underline; text-underline-offset:4px; cursor:pointer; font:inherit; }
+@keyframes motor-spin { to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { .motor-rotor { animation:none; } }
+@media(max-width:520px) { .motor-demo { display:block; padding:14px 18px; }.motor-illustration { display:block; margin:auto; } }
 .arduino-lab button:focus-visible,.arduino-lab a:focus-visible { outline:3px solid #6c944b; outline-offset:4px; }
 @media(max-width:720px) { .arduino-heading,.arduino-toolbar { display:block; }.arduino-heading>a { display:inline-block; padding:10px 0; }.arduino-toolbar p { margin:12px 0; }.arduino-preview { border-radius:12px; } }
