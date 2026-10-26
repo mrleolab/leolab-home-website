@@ -1,0 +1,18 @@
+.arduino-lab { padding:48px clamp(20px,4vw,64px); background:#f2f5ed; color:#203d30; }
+.arduino-heading { display:flex; justify-content:space-between; align-items:center; gap:24px; margin-bottom:20px; }
+.arduino-heading h2 { margin:12px 0; font-size:clamp(34px,4.5vw,66px); line-height:1.1; letter-spacing:-.045em; }
+.arduino-heading h2 em { color:#52795d; }
+.arduino-heading p { max-width:650px; line-height:1.6; }
+.arduino-heading > a { color:inherit; white-space:nowrap; text-underline-offset:4px; }
+.arduino-toolbar { display:flex; align-items:center; gap:18px; margin-bottom:16px; }
+.arduino-toolbar p,.arduino-credit { font-size:13px; line-height:1.6; color:#52635b; }
+.arduino-toolbar button { flex-shrink:0; min-height:44px; padding:10px 18px; border:1px solid #315a43; border-radius:24px; background:#315a43; color:white; cursor:pointer; font:600 14px/1.4 'Inter',Arial,sans-serif; }
+.arduino-preview { position:relative; border:1px solid #c9d5c9; border-radius:18px; overflow:hidden; background:#fafafa; }
+.arduino-preview iframe { display:block; width:100%; height:min(82svh,900px); min-height:560px; border:0; pointer-events:none; }
+.arduino-preview.is-interactive iframe { pointer-events:auto; }
+.arduino-cover { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; width:100%; border:0; color:#173e2c; background:linear-gradient(transparent,#edf4e2b8); cursor:pointer; touch-action:pan-y; }
+.arduino-cover span { padding:15px 24px; border-radius:30px; background:#234d37; color:white; font-size:17px; font-weight:650; box-shadow:0 8px 30px #203b3133; }
+.arduino-cover small { max-width:340px; margin:0 20px; padding:8px; border-radius:10px; background:#ffffffdf; font-size:12px; line-height:1.6; }
+.arduino-preview.is-interactive .arduino-cover { display:none; }
+.arduino-lab button:focus-visible,.arduino-lab a:focus-visible { outline:3px solid #6c944b; outline-offset:4px; }
+@media(max-width:720px) { .arduino-heading,.arduino-toolbar { display:block; }.arduino-heading>a { display:inline-block; padding:10px 0; }.arduino-toolbar p { margin:12px 0; }.arduino-preview { border-radius:12px; } }
