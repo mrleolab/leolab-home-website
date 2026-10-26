@@ -6,7 +6,8 @@ const html=fs.readFileSync(`${__dirname}/index.html`,'utf8');
 test('Arduino is section 01 before Starfield section 02, with a lazy isolated external iframe',()=>{
   assert.ok(html.indexOf('id="arduino-lab"')<html.indexOf('id="space-lab"'));
   assert.ok(html.indexOf('id="arduino-lab"')<html.indexOf('class="learning-intro"'));
-  assert.match(html,/01 \/ ARDUINO LABORATORY/);
+  assert.match(html,/01 \/ CIRCUITS &amp; ELECTRONICS/);
+  assert.match(html,/<h2 id="arduino-title">Circuits &amp; Electronics Laboratory<\/h2>/);
   assert.match(html,/02 \/ STARFIELD LABORATORY/);
   const frame=html.match(/<iframe id="arduino-frame"[^>]+>/)[0];
   for(const part of ['https://learn-arduino-red.vercel.app/zh/#motor','loading="lazy"','referrerpolicy="no-referrer"','sandbox=','tabindex="0"'])assert.ok(frame.includes(part));
