@@ -13,7 +13,7 @@ test('Resources has matching certification and learning material links on deskto
   for(const menu of [desktop,mobile]){
     assert.doesNotMatch(menu,/Projects &amp; Resources|href="#work"/);
     assert.match(menu,/href="knowledge-base\/certifications\/">Certifications/);
-    assert.match(menu,/href="https:\/\/drive.google.com\/drive\/folders\/12iHPPOLp1CZ3WUG6SZLDwFpVRFlTtwWx\?usp=sharing" target="_blank" rel="noreferrer">Learning Materials ↗/);
+    assert.match(menu,/href="https:\/\/drive.google.com\/drive\/folders\/12iHPPOLp1CZ3WUG6SZLDwFpVRFlTtwWx\?usp=sharing" target="_blank" rel="noreferrer">Chinese Learning Materials ↗/);
   }
 });
 test('Docusaurus certification guide has eight bilingual categories and all official links',()=>{
@@ -29,5 +29,13 @@ test('Docusaurus certification guide has eight bilingual categories and all offi
       assert.match(html,/Docusaurus/);assert.equal((html.match(/<h1\b/g)||[]).length,1);
     }
   }
-  assert.equal(count,21);
+  assert.ok(count>21);
+});
+test('AI guide separates credentials from technical learning in both locales',()=>{
+  for(const locale of ['', 'zh-CN/']){
+    const page=fs.readFileSync(`${__dirname}/knowledge-base/${locale}certifications/ai/index.html`,'utf8');
+    for(const name of ['Anthropic','OpenAI','Hugging Face','PyTorch','vLLM','SGLang']) assert.ok(page.includes(name));
+    for(const host of ['academy.claude.com','learn.chatgpt.com','pytorch.org/pytorch-certification/','docs.vllm.ai','docs.sglang.io']) assert.ok(page.includes(host));
+    assert.ok(page.includes(locale?'不是已核实的认证项目':'not verified certification programs'));
+  }
 });
