@@ -22,3 +22,11 @@ test('robotics guide and homepage entry exist in both languages',()=>{
     assert.ok(page.includes('huggingface.co/docs/lerobot/'));
   }
 });
+test('expanded robotics guide has bilingual primary sources and clear hardware boundaries',()=>{
+  const read=p=>fs.readFileSync(`${__dirname}/${p}`,'utf8');
+  const en=read('docs-site/docs/robotics/index.md');
+  const zh=read('docs-site/i18n/zh-CN/docusaurus-plugin-content-docs/current/robotics/index.md');
+  const links=s=>[...s.matchAll(/\]\((https:\/\/[^)]+)\)/g)].map(m=>m[1]);
+  assert.deepEqual(links(en),links(zh));
+  for(const s of [en,zh])for(const v of ['microduck-simulator','microduck_rl','CUDA','hardware_guide','envhub','cheatsheet.md','python3 --version'])assert.ok(s.includes(v),v);
+});
