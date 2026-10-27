@@ -23,7 +23,7 @@ test('Science and Competitions precede Blog and have matched desktop/mobile dest
     const mobile = home.match(new RegExp('<summary>' + label + ' <span>⌄</span></summary>(.*?)</details>', 's'))[1];
     const urls = html => [...html.matchAll(/href="([^"]+)"/g)].map(m => m[1]);
     assert.deepEqual(urls(menu), urls(mobile));
-    assert.ok(urls(menu).every(url => url.startsWith('https://')));
+    assert.ok(urls(menu).every(url => url.startsWith(id === 'competitions' ? 'knowledge-base/competitions/' : 'https://')));
   }
 });
 
