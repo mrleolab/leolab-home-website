@@ -7,6 +7,7 @@ window.LEO_TRANSLATIONS = [
   ['02 / ARDUINO LABORATORY','02 / ARDUINO 实验室'],['Arduino','Arduino'],['Explore an interactive 3D board, circuits, and beginner electronics lessons.','探索交互式 3D 开发板、电路与电子入门课程。'],['Open the full course ↗','打开完整课程 ↗'],['Enable interaction','开始操作'],['Return to page scrolling','恢复页面滑动'],['Enable interaction to use the course. Turn it off to scroll the page over the preview.','开启后可以操作课程；关闭后可在预览区域滑动主页。'],['Interactive Arduino course','交互式 Arduino 课程'],['Start the Arduino lab','进入 Arduino 实验室'],['Tap to interact · use the control above to return to page scrolling','点击开始操作 · 使用上方按钮恢复页面滑动'],['Embedded external course. Content and interactions are provided by the original site.','嵌入的外部课程，内容与交互由原网站提供。'],['Learning approach','学习方式'],
   ['Chinese Learning Materials ↗','中文教材资料 ↗'],
   ['Robotics Programming','机器人编程'],
+  ['Minecraft Development','Minecraft 开发'],
   ['MAA AMC — AMC 8, 10 & 12','MAA AMC — AMC 8、10 与 12'],
   ['Waterloo CEMC Contests','滑铁卢 CEMC 竞赛'],
   ['Euclid Mathematics Contest','欧几里得数学竞赛'],

@@ -11,6 +11,7 @@ module.exports = {
     ]}
   ],
   robotics: ['robotics/index'],
+  minecraft: ['minecraft/index'],
   certifications: [
     {type: 'category', label: 'Certifications', collapsed: false, items: [
       'certifications/index', 'certifications/ai', 'certifications/cloud',
