@@ -13,8 +13,13 @@ test('Resources has matching certification and learning material links on deskto
   for(const menu of [desktop,mobile]){
     assert.doesNotMatch(menu,/Projects &amp; Resources|href="#work"/);
     assert.match(menu,/href="knowledge-base\/certifications\/">Certifications/);
+    assert.match(menu,/href="https:\/\/velxio\.dev\/" target="_blank" rel="noopener noreferrer">Hardware &amp; Electronics Engineering ↗/);
     assert.match(menu,/href="https:\/\/drive.google.com\/drive\/folders\/12iHPPOLp1CZ3WUG6SZLDwFpVRFlTtwWx\?usp=sharing" target="_blank" rel="noreferrer">Chinese Learning Materials ↗/);
   }
+});
+test('hardware electronics resource has a Chinese menu label',()=>{
+  const strings=fs.readFileSync(`${__dirname}/site-language-strings.js`,'utf8');
+  assert.ok(strings.includes("['Hardware & Electronics Engineering ↗','硬件电子工程 ↗']"));
 });
 test('Docusaurus certification guide has eight bilingual categories and all official links',()=>{
   const slugs=['ai','cloud','networking','cybersecurity','servers','databases','devops','project-management'];
