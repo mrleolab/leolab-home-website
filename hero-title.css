@@ -19,7 +19,7 @@
 .hero .hero-copy h1 {
   font-size: clamp(64px, 7vw, 108px);
   line-height: 1.04;
-  text-transform: uppercase;
+  text-transform: none;
   margin: 24px 0 32px;
   background: linear-gradient(105deg, #10d3a2 5%, #19c9b9 35%, #328ecf 64%, #7860e5 98%);
 }
