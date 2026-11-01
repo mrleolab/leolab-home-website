@@ -1,0 +1,49 @@
+/* Anton is distributed with its SIL Open Font License in assets/fonts. */
+@font-face {
+  font-family: 'Leo Anton';
+  src: url('assets/fonts/Anton-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.hero .hero-copy h1,
+.hero .hero-copy h1 em {
+  font-family: 'Leo Anton', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -.025em;
+  color: #20cfb0;
+}
+
+.hero .hero-copy h1 {
+  font-size: clamp(64px, 7vw, 108px);
+  line-height: 1.04;
+  text-transform: uppercase;
+  margin: 24px 0 32px;
+  background: linear-gradient(105deg, #10d3a2 5%, #19c9b9 35%, #328ecf 64%, #7860e5 98%);
+}
+
+.hero .hero-copy h1 em { color: inherit; }
+
+html:lang(zh-CN) .hero .hero-copy h1,
+html:lang(zh-CN) .hero .hero-copy h1 em { font-weight: 700; }
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .hero .hero-copy h1 {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero .hero-copy h1 {
+    font-size: clamp(48px, 13.5vw, 76px);
+    line-height: 1.06;
+  }
+}
+
+@media (forced-colors: active) {
+  .hero .hero-copy h1 { background: none; color: CanvasText; }
+}
